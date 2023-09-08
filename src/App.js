@@ -16,7 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Router />} />
         <Route path="/batafsil" element={<Batafsil />} />
-        <Route path="/corzinka" element={<Karzinka />} />
+        <Route path="/korzinka" element={<Karzinka />} />
       </Routes>
     </div>
   );

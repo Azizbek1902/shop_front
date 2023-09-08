@@ -92,7 +92,7 @@ export default () => {
                   </td>
                 </tr>
                 {keyData.map((item, ind) => (
-                  <tr className="border-2 border-[#aeaeae]">
+                  <tr className="border-2 border-[#aeaeae]" key={ind + 1}>
                     <td className="text-lg font-bold py-2 px-3 border-2 border-[#aeaeae]">
                       <span>{item}:</span>
                     </td>

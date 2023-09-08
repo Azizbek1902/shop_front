@@ -18,7 +18,9 @@ import Dropdown from "../../components/Dropdown";
 export default () => {
   const [modal, setModal] = useState(false);
   const [dataProduct, setDataProduct] = useState([]);
-  const [refresh, setRefresh] = useState(true);
+  const [isEdit, setIsEdit] = useState({ type: false, data: null });
+  const [files, setFiles] = useState([]);
+  const [refresh, setRefresh] = useState(false);
   const [attendence, setAttendence] = useState([
     {
       desc: "1",
@@ -39,7 +41,7 @@ export default () => {
         setDataProduct(res);
       })
       .catch((err) => console.log(err));
-    setRefresh(false);
+    setRefresh(true);
   }, [refresh]);
 
   const formik = useFormik({
@@ -57,26 +59,30 @@ export default () => {
         foo[`${item.desc}`] = item.title;
       });
       formData.append("title", values.title);
+      formData.append("status", false);
       formData.append("price", values.price);
       formData.append("storeCount", values.storeCount);
       formData.append("desc", values.desc);
       formData.append("category", values.category._id);
       formData.append("file", files[0]);
       formData.append("parametr", JSON.stringify(foo));
+      let payload = formData;
       if (isEdit.type) {
         products
-          .edit(isEdit.data._id, formData)
+          .edit(isEdit.data._id, payload)
           .then(() => editToast())
           .catch(() => editErorrToast());
       } else {
         products
-          .create(formData)
-          .then(() => qoshishToast())
+          .create(payload)
+          .then(() => {
+            qoshishToast();
+          })
           .catch(() => creacteErorrToast());
       }
       formik.resetForm();
       setModal(false);
-      setRefresh(!refresh);
+      setRefresh(false);
       setIsEdit({ type: false, data: null });
     },
   });
@@ -93,15 +99,15 @@ export default () => {
     setIsEdit({ type: true, data: data });
   };
   const handleClikDelete = (id) => {
-    setRefresh(!refresh);
     products
       .delete(id)
-      .then(() => deleteToast())
-      .catch((err) => deleteErorrToast());
+      .then(() => {
+        deleteToast();
+        setRefresh(!refresh);
+      })
+      .catch(() => deleteErorrToast());
   };
-  const [isEdit, setIsEdit] = useState({ type: false, data: null });
-  const [files, setFiles] = useState([]);
-
+  console.log(modal, "dddddddddddd");
   const formData = new FormData();
 
   const handleCancel = () => {
@@ -141,7 +147,7 @@ export default () => {
       <div className="flex justify-center">
         <div className="w-[95%]">
           <div className="flex justify-between items-center mr-10 py-10">
-            <h1 className="py-10 text-center text-xl lg:text-4xl font-medium font-serif">
+            <h1 className="py-10 text-center text-[#1E326B] text-xl lg:text-4xl font-medium font-serif">
               Mahsulotlar
             </h1>
             <button
@@ -156,21 +162,18 @@ export default () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {dataProduct.map((item, ind) => {
-              let keyData = [];
-              let valueData = [];
-              if (item.parametr) {
-                for (const [key, value] of Object.entries(item.parametr)) {
-                  keyData.push(key);
-                  valueData.push(value);
-                }
-              }
               return (
                 <div key={ind + 1}>
-                  <div className="md:p-6 p-5 rounded-lg shadowCard max-h-[330px] overflow-y-auto">
+                  <div className="md:p-6 p-5 rounded-lg bg-white shadowCard">
                     <div className="flex cursor-pointer justify-center">
-                      <img src={item.media} className="rounded-full" alt="" />
+                      <img
+                        src={item.media}
+                        crossOrigin="anonymous"
+                        className="rounded-md w-full h-[150px]"
+                        alt="dsdsd"
+                      />
                     </div>
-                    <table className="mb-5 w-full">
+                    <table className="mb-5 mt-5 w-full">
                       <tr className="flex border border-[#c3c3c3]">
                         <td className="pl-3 text-md font-semibold py-1 border border-[#c3c3c3] w-full">
                           Nomi:
@@ -197,16 +200,6 @@ export default () => {
                           {item.storeCount}
                         </td>
                       </tr>
-                      {keyData.map((item, ind) => (
-                        <tr className="border-2 border-[#aeaeae]">
-                          <td className="text-lg font-bold py-2 px-3 border-2 border-[#aeaeae]">
-                            <span>{item}:</span>
-                          </td>
-                          <td className="text-md font-medium py-2 pl-3 border-2 border-[#aeaeae]">
-                            {valueData[ind]}
-                          </td>
-                        </tr>
-                      ))}
                       <tr className="flex border border-[#c3c3c3]">
                         <td className="pl-3 text-md font-semibold py-1 border border-[#c3c3c3] w-full">
                           Malumot:

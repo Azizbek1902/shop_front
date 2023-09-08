@@ -22,13 +22,13 @@ export default () => {
     <div>
       <div className="flex">
         <div
-          className={` transitionNav border-r-2 border-blue-300  min-h-screen ${
+          className={` transitionNav border-r-2 border-[#F6FAFF]  min-h-screen ${
             open ? "w-[340px]" : "w-[90px]"
           }`}
         >
           <Navbar open={open} onclik={handleClik} pageFunk={handlePage} />
         </div>
-        <div className="w-full">{pages[page]}</div>
+        <div className="w-full containerShadow bg-[#F6FAFF]">{pages[page]}</div>
       </div>
     </div>
   );

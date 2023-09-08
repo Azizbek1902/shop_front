@@ -91,7 +91,7 @@ export default () => {
                       });
                     }}
                   >
-                    <img src={item.media} className="rounded-full" alt="" />
+                    <img src={item.media} crossOrigin="anonymous" className="rounded-full" alt="" />
                   </div>
                   <div className="flex py-5 flex-col md:flex-row justify-center md:justify-between gap-3">
                     <h1 className="text-xl font-semibold text-center">
@@ -125,7 +125,7 @@ export default () => {
               <div className="flex fixed justify-center bottom-10 right-4">
                 <button
                   onClick={() => {
-                    navigate("/corzinka");
+                    navigate("/korzinka");
                   }}
                   className="outline-none relative pl-3 pr-7 shadowShopIcon py-5 rounded-full bg-[#30b544e7] text-white font-medium
            font-sans border-2 border-[#30B545]"

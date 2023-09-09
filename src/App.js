@@ -6,6 +6,7 @@ import Batafsil from "./views/Batafsil";
 import Karzinka from "./views/Karzinka";
 import Login from "./views/Login";
 import { ToastContainer } from "react-toastify";
+import ProductOne from "./views/ProductOne";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Product />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Router />} />
+        <Route path="/productOne" element={<ProductOne />} />
         <Route path="/batafsil" element={<Batafsil />} />
         <Route path="/korzinka" element={<Karzinka />} />
       </Routes>

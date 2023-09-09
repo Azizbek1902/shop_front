@@ -91,7 +91,12 @@ export default () => {
                       });
                     }}
                   >
-                    <img src={item.media} crossOrigin="anonymous" className="rounded-full" alt="" />
+                    <img
+                      src={item.media}
+                      crossOrigin="anonymous"
+                      className="rounded-md w-full h-[150px]"
+                      alt="dsdsd"
+                    />
                   </div>
                   <div className="flex py-5 flex-col md:flex-row justify-center md:justify-between gap-3">
                     <h1 className="text-xl font-semibold text-center">

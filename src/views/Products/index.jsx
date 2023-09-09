@@ -14,13 +14,16 @@ import {
   deleteErorrToast,
 } from "../../services/toaster";
 import Dropdown from "../../components/Dropdown";
+import { useNavigate } from "react-router-dom";
 
 export default () => {
   const [modal, setModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState({ type: false, id: null });
   const [dataProduct, setDataProduct] = useState([]);
   const [isEdit, setIsEdit] = useState({ type: false, data: null });
   const [files, setFiles] = useState([]);
   const [refresh, setRefresh] = useState(false);
+  const navigate = useNavigate();
   const [attendence, setAttendence] = useState([
     {
       desc: "1",
@@ -104,10 +107,10 @@ export default () => {
       .then(() => {
         deleteToast();
         setRefresh(!refresh);
+        setDeleteModal({ type: false, id: null });
       })
       .catch(() => deleteErorrToast());
   };
-  console.log(modal, "dddddddddddd");
   const formData = new FormData();
 
   const handleCancel = () => {
@@ -165,7 +168,12 @@ export default () => {
               return (
                 <div key={ind + 1}>
                   <div className="md:p-6 p-5 rounded-lg bg-white shadowCard">
-                    <div className="flex cursor-pointer justify-center">
+                    <div
+                      onClick={() => {
+                        navigate("/productOne", { state: item });
+                      }}
+                      className="flex cursor-pointer justify-center"
+                    >
                       <img
                         src={item.media}
                         crossOrigin="anonymous"
@@ -205,7 +213,9 @@ export default () => {
                           Malumot:
                         </td>
                         <td className="pl-3 text-md font-medium py-1 border border-[#c3c3c3] w-full">
-                          {item.desc}
+                          {item.desc.length > 8
+                            ? item.desc.slice(0, 8) + "...."
+                            : item.desc}
                         </td>
                       </tr>
                     </table>
@@ -218,12 +228,63 @@ export default () => {
                         <FiEdit />
                       </button>
                       <button
-                        onClick={() => handleClikDelete(item._id)}
+                        onClick={() => {
+                          setDeleteModal({ type: true, id: item._id });
+                        }}
                         className={`text-lg outline-none flex justify-center items-center px-5 py-2 rounded-md text-white font-medium
            font-sans bg-[#ff3e34]`}
                       >
                         <AiFillDelete />
                       </button>
+                      {deleteModal.type ? (
+                        <>
+                          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full max-h-[80vh] overflow-y-auto bg-white outline-none focus:outline-none">
+                                <div className="flex items-start justify-between p-10 border-b border-solid border-slate-200 rounded-t">
+                                  <h3 className="text-3xl font-semibold">
+                                    Product o'chirilsinmi
+                                  </h3>
+                                  <button
+                                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                                    onClick={() => setModal(false)}
+                                  >
+                                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                                      ×
+                                    </span>
+                                  </button>
+                                </div>
+                                <div className="relative p-10 flex-auto">
+                                  <div className="flex justify-between">
+                                    <button
+                                      onClick={() => {
+                                        setDeleteModal({
+                                          type: false,
+                                          id: null,
+                                        });
+                                      }}
+                                      className={`text-xl outline-none flex justify-center items-center px-5 py-2 rounded-md text-white font-medium
+           font-sans bg-[#EE8108]`}
+                                    >
+                                      Yo'q
+                                    </button>
+                                    <button
+                                      onClick={() =>
+                                        handleClikDelete(deleteModal.id)
+                                      }
+                                      className={`text-xl outline-none flex justify-center items-center px-5 py-2 rounded-md text-white font-medium
+           font-sans bg-[#ff3e34]`}
+                                    >
+                                      Ha
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                        </>
+                      ) : null}
                     </div>
                   </div>
                 </div>
@@ -286,17 +347,23 @@ export default () => {
                       onChange={formik.handleChange}
                       value={formik.values.desc}
                     />
-                    <Dropdown
-                      value={formik.values.category}
-                      border={`2px solid #bfbfbf`}
-                      padding="13px 20px"
-                      width="100%"
-                      options={categorys}
-                      placeholder="Kategoriyani tanlang"
-                      handleItem={(item) =>
-                        formik.setFieldValue("category", item)
-                      }
-                    />
+                    {isEdit.type ? (
+                      <></>
+                    ) : (
+                      <>
+                        <Dropdown
+                          value={formik.values.category}
+                          border={`2px solid #bfbfbf`}
+                          padding="13px 20px"
+                          width="100%"
+                          options={categorys}
+                          placeholder="Kategoriyani tanlang"
+                          handleItem={(item) =>
+                            formik.setFieldValue("category", item)
+                          }
+                        />
+                      </>
+                    )}
                     <label className="text-lg pl-3 font-medium" htmlFor="title">
                       Mahsulot soni
                     </label>
@@ -360,16 +427,25 @@ export default () => {
                         </div>
                       </>
                     )}
-                    <label className="text-lg pl-3 font-medium" htmlFor="title">
-                      Rasm tanlash
-                    </label>
-                    <input
-                      className="text-lg font-normal pl-3 w-96 rounded-md py-1 outline-none border-2 border-[#bfbfbf]"
-                      type="file"
-                      name="img"
-                      onChange={(e) => setFiles(e.target.files)}
-                      value={formik.values.file}
-                    />
+                    {isEdit.type ? (
+                      <></>
+                    ) : (
+                      <>
+                        <label
+                          className="text-lg pl-3 font-medium"
+                          htmlFor="title"
+                        >
+                          Rasm tanlash
+                        </label>
+                        <input
+                          className="text-lg font-normal pl-3 w-96 rounded-md py-1 outline-none border-2 border-[#bfbfbf]"
+                          type="file"
+                          name="img"
+                          onChange={(e) => setFiles(e.target.files)}
+                          value={formik.values.file}
+                        />
+                      </>
+                    )}
                     <div className="flex justify-between gap-5">
                       <button
                         onClick={() => handleCancel()}

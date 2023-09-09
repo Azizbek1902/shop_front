@@ -97,8 +97,9 @@ export default () => {
                     <div className="flex pt-5 justify-center">
                       <img
                         src={item.media}
-                        className="rounded-full w-36 h-28"
-                        alt=""
+                        crossOrigin="anonymous"
+                        className="rounded-md w-full h-[100px]"
+                        alt="dsdsd"
                       />
                     </div>
                     <div className="w-full pl-5">

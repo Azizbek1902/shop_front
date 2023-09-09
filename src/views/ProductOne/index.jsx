@@ -57,7 +57,7 @@ export default () => {
           className=" outline-none px-5 py-2 rounded-md text-white font-medium
          font-sans bg-[#30B545]"
           onClick={() => {
-            navigate("/");
+            navigate("/dashboard");
           }}
         >
           <BiLogOut size={30} />

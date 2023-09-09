@@ -12,8 +12,9 @@ export default () => {
   const { addItem } = useCart();
   let keyData = [];
   let valueData = [];
-  if (state.property) {
-    for (const [key, value] of Object.entries(state.property)) {
+  console.log(state, 'ssssssssss')
+  if (state?.parametr) {
+    for (const [key, value] of Object.entries(state.parametr)) {
       keyData.push(key);
       valueData.push(value);
     }

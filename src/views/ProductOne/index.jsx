@@ -1,55 +1,19 @@
 import { BiLogOut } from "react-icons/bi";
-import { MdAddShoppingCart } from "react-icons/md";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useCart } from "react-use-cart";
-import products from "../../services/products";
 
 export default () => {
   const navigate = useNavigate();
-  const [dataProduct, setDataProduct] = useState([]);
   const { state } = useLocation();
-  const { addItem } = useCart();
   let keyData = [];
   let valueData = [];
-  if (state.property) {
-    for (const [key, value] of Object.entries(state.property)) {
+  console.log(state)
+  if (state.parametr) {
+    for (const [key, value] of Object.entries(state.parametr)) {
       keyData.push(key);
       valueData.push(value);
     }
   }
-  useEffect(() => {
-    products
-      .getAll()
-      .then((res) => {
-        setDataProduct(res);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  const handleClik = (data) => {
-    dataProduct.map((item) => {
-      if (item.id == data._id) {
-        if (!item.status) {
-          console.log(item, "item");
-          let newData = {
-            id: data._id,
-            img: data.img,
-            title: data.title,
-            desc: data.desc,
-            price: data.price,
-            status: true,
-          };
-          addItem(data);
-          products
-            .edit(data._id, newData)
-            .then()
-            .catch((err) => console.log(err));
-        }
-      } else {
-        console.log("errr");
-      }
-    });
-  };
   return (
     <div className="">
       <div className=" absolute top-5 flex justify-center left-0 w-full">
@@ -111,15 +75,6 @@ export default () => {
                   </td>
                 </tr>
               </table>
-              <div className="flex justify-center mt-10">
-                <button
-                  onClick={() => handleClik(state)}
-                  className="text-lg outline-none px-5 py-2 rounded-md text-white font-medium
-           font-sans bg-[#30B545]"
-                >
-                  <MdAddShoppingCart size={30} />
-                </button>
-              </div>
             </div>
           </div>
         </div>

@@ -5,18 +5,31 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "react-use-cart";
 import products from "../../services/products";
+import category from "../../services/category";
 
 export default () => {
   const { addItem, items, totalUniqueItems } = useCart();
   const [dataProduct, setDataProduct] = useState([]);
+  const [categorys, setCategorys] = useState([]);
+  const [buttonCategorys, setButtonCategorys] = useState([]);
+  const [categoryTitle, setCategoryTitle] = useState(categorys[0]?._id);
   const [refresh, setRefresh] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
+    category
+      .getAll()
+      .then((res) => {
+        setCategorys(res);
+        console.log(res, "dddddddddddddddd");
+      })
+      .catch((err) => console.log(err));
     products
       .getAll()
       .then((res) => {
         setDataProduct(res);
+        setButtonCategorys(res);
         setRefresh(true);
+        console.log(res);
       })
       .catch((err) => console.log(err));
   }, [refresh]);
@@ -53,28 +66,38 @@ export default () => {
     });
   };
 
+  const handleChange = (itemId) => {
+    let data = buttonCategorys.filter((i) => i.category == itemId);
+    setDataProduct(data);
+  };
+
   return (
     <div>
       <div className="mt-4 mb-10 flex overflow-x-auto justify-center mx-4">
         <div className="flex gap-4 w-[900px] md:pl-0 pl-44 justify-center">
           <button
+            onClick={() => {
+              handleChange("");
+            }}
             className="text-lg outline-none h-16 px-5 py-2 w-40 rounded-md focus:text-white text-black font-bold
            font-sans bg-[#F0F0F0] focus:bg-[#EE8108]"
           >
-            Cheescakes
+            All
           </button>
-          <button
-            className="text-lg outline-none h-16 px-5 py-2 w-40 rounded-md focus:text-white text-black font-bold
+          {categorys.map((item, index) => {
+            return (
+              <button
+                onClick={() => {
+                  handleChange(item._id);
+                }}
+                key={index + 1}
+                className="text-lg outline-none h-16 px-5 py-2 w-40 rounded-md focus:text-white text-black font-bold
            font-sans bg-[#F0F0F0] focus:bg-[#EE8108]"
-          >
-            Cakes
-          </button>
-          <button
-            className="text-lg outline-none h-16 px-5 py-2 w-40 leading-6 rounded-md focus:text-white text-black font-bold
-           font-sans bg-[#F0F0F0] focus:bg-[#EE8108]"
-          >
-            Muchniy izdeliya
-          </button>
+              >
+                {item.title}
+              </button>
+            );
+          })}
         </div>
       </div>
       <div className="flex justify-center">

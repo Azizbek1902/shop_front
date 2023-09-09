@@ -94,7 +94,12 @@ export default () => {
                     <AiFillDelete size={21} />
                   </button>
                   <div className="md:p-10 flex items-center p-2 w-full rounded-lg">
-                    <div className="flex pt-5 justify-center">
+                    <div
+                      className="flex cursor-pointer pt-5 justify-center"
+                      onClick={() => {
+                        navigate("/batafsil", { state: item });
+                      }}
+                    >
                       <img
                         src={item.media}
                         crossOrigin="anonymous"

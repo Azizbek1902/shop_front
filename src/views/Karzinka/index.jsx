@@ -4,8 +4,9 @@ import React from "react";
 import { useCart } from "react-use-cart";
 import { useNavigate } from "react-router-dom";
 import products from "../../services/products";
-
+import { useTelegram } from '../telegram/tg';
 export default () => {
+  const { tg, queryId } = useTelegram();
   const navigate = useNavigate();
   const {
     isEmpty,
@@ -15,6 +16,21 @@ export default () => {
     updateItemQuantity,
     removeItem,
   } = useCart();
+
+  const sendData = () => {
+    let data = {
+      queryId: queryId
+    }
+    tg.sendData(JSON.stringify(newData));
+  }
+
+  useEffect(() => {
+    tg.onEvent('mainButtonClicked', sendData);
+    return () => {
+      tg.offEvent('mainButtonClicked', sendData);
+    };
+  }, [sendData]);
+
   if (isEmpty)
     return (
       <>

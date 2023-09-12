@@ -12,7 +12,7 @@ export default () => {
   const [dataProduct, setDataProduct] = useState([]);
   const [categorys, setCategorys] = useState([]);
   const [buttonCategorys, setButtonCategorys] = useState([]);
-  const [categoryTitle, setCategoryTitle] = useState(categorys[0]?._id);
+  // const [categoryTitle, setCategoryTitle] = useState(categorys[0]?._id);
   const [refresh, setRefresh] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
@@ -20,7 +20,6 @@ export default () => {
       .getAll()
       .then((res) => {
         setCategorys(res);
-        console.log(res, "dddddddddddddddd");
       })
       .catch((err) => console.log(err));
     products
@@ -29,7 +28,6 @@ export default () => {
         setDataProduct(res);
         setButtonCategorys(res);
         setRefresh(true);
-        console.log(res);
       })
       .catch((err) => console.log(err));
   }, [refresh]);
@@ -67,8 +65,12 @@ export default () => {
   };
 
   const handleChange = (itemId) => {
-    let data = buttonCategorys.filter((i) => i.category == itemId);
-    setDataProduct(data);
+    if(itemId == ""){
+      setDataProduct(buttonCategorys)
+    }else {
+      let data = buttonCategorys.filter((i) => i.category == itemId);
+      setDataProduct(data);
+    }
   };
 
   return (

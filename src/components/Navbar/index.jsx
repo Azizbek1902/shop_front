@@ -40,7 +40,7 @@ export default ({ open, onclik, pageFunk }) => {
                 to={"/dashboard"}
               >
                 <AiFillHome size={25} />
-                {open ? "Products" : <></>}
+                {open ? "Buyurtma" : <></>}
               </NavLink>
             </li>
             <li
@@ -60,7 +60,7 @@ export default ({ open, onclik, pageFunk }) => {
                 to={"/dashboard"}
               >
                 <AiFillShop size={25} />
-                {open ? "Category" : <></>}
+                {open ? "Kategoriya" : <></>}
               </NavLink>
             </li>
             <li
@@ -80,7 +80,7 @@ export default ({ open, onclik, pageFunk }) => {
                 to={"/dashboard"}
               >
                 <BsFillPersonBadgeFill size={25} />
-                {open ? "Order" : <></>}
+                {open ? "Mahsulotlar" : <></>}
               </NavLink>
             </li>
           </ul>

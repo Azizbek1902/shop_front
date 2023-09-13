@@ -50,8 +50,8 @@ export default () => {
   const formik = useFormik({
     initialValues: {
       title: "",
-      price: 0,
-      storeCount: 0,
+      price: 1,
+      storeCount: 1,
       desc: "",
       category: {},
       parametr: {},
@@ -85,7 +85,7 @@ export default () => {
       }
       formik.resetForm();
       setModal(false);
-      setRefresh(false);
+      setRefresh(!refresh);
       setIsEdit({ type: false, data: null });
     },
   });

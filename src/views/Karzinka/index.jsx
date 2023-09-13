@@ -1,11 +1,12 @@
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
-import React from "react";
+import React, {useEffect} from "react";
 import { useCart } from "react-use-cart";
 import { useNavigate } from "react-router-dom";
 import products from "../../services/products";
-
+import { useTelegram } from '../telegram/tg';
 export default () => {
+  const { tg, queryId } = useTelegram();
   const navigate = useNavigate();
   const {
     isEmpty,
@@ -15,6 +16,24 @@ export default () => {
     updateItemQuantity,
     removeItem,
   } = useCart();
+
+  const sendData = () => {
+    let data = {
+      queryId: queryId,
+      cartTotal: cartTotal,
+      status: 0,
+      items: items
+    }
+    tg.sendData(JSON.stringify(data));
+  }
+
+  useEffect(() => {
+    tg.onEvent('mainButtonClicked', sendData);
+    return () => {
+      tg.offEvent('mainButtonClicked', sendData);
+    };
+  }, [sendData]);
+
   if (isEmpty)
     return (
       <>
@@ -151,6 +170,7 @@ export default () => {
           </div>
           <div className="flex justify-center">
             <button
+            onClick={()=>sendData()}
               className="mt-10 mb-5 outline-none pl-3 pr-4 py-3 rounded-md text-white font-medium
          font-sans bg-[#30B545]"
             >

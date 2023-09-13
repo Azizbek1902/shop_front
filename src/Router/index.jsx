@@ -14,9 +14,9 @@ export default () => {
     setPage(page);
   };
   let pages = {
-    home: <Products pageFunc={handlePage} />,
+    about: <Products pageFunc={handlePage} />,
     category: <Category />,
-    about: <Order />,
+    home: <Order />,
   };
   return (
     <div>

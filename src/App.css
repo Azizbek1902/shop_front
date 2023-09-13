@@ -29,3 +29,56 @@
 .shadowShopIcon {
   box-shadow: 0px 0px 12px rgb(104, 104, 104);
 }
+
+.orders {
+  display: flex;
+  justify-content: space-around;
+}
+
+.orders table {
+  width: 90%;
+  margin-top: 5%;
+}
+
+.maps {
+  font-size: 40px;
+    color: sienna;
+    font-weight: 800;
+}
+
+.menu_order {
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.orderMenu{
+  font-size: 26px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  width: 220px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.order_change {
+  font-size: 25px;
+  color: forestgreen;
+  margin: 0px;
+  display: inline;
+}
+
+
+.orderOne {
+  padding-top:30px ;
+  background-color: rgba(0, 0, 0, 0.252);
+  height: 100vh;
+}
+
+.wrapOne {
+  width: 960px;
+  margin: 0 auto;
+  height: 680px;
+  background-color: white;
+  text-align: center;
+}

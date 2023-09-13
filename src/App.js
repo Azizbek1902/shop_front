@@ -7,7 +7,7 @@ import Karzinka from "./views/Karzinka";
 import Login from "./views/Login";
 import { ToastContainer } from "react-toastify";
 import ProductOne from "./views/ProductOne";
-
+import OrderOne from "./views/OrderOne";
 function App() {
   return (
     <div className="App">
@@ -19,6 +19,7 @@ function App() {
         <Route path="/productOne" element={<ProductOne />} />
         <Route path="/batafsil" element={<Batafsil />} />
         <Route path="/korzinka" element={<Karzinka />} />
+        <Route path="/order/one" element={<OrderOne />} />
       </Routes>
     </div>
   );

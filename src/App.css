@@ -20,6 +20,9 @@
   color: #9783f3;
   border-radius: 8px;
 }
+.shadowNum {
+  box-shadow: 0px 0px 10px rgb(205, 204, 204);
+}
 .shadowCard {
   box-shadow: 0px 0px 10px rgb(205, 204, 204);
 }
@@ -42,8 +45,8 @@
 
 .maps {
   font-size: 40px;
-    color: sienna;
-    font-weight: 800;
+  color: sienna;
+  font-weight: 800;
 }
 
 .menu_order {
@@ -52,9 +55,9 @@
   justify-content: space-around;
 }
 
-.orderMenu{
+.orderMenu {
   font-size: 26px;
-  padding: 10px 15px;
+  padding: 20px 15px;
   border-radius: 10px;
   width: 220px;
   text-align: center;
@@ -68,9 +71,8 @@
   display: inline;
 }
 
-
 .orderOne {
-  padding-top:30px ;
+  padding-top: 30px;
   background-color: rgba(0, 0, 0, 0.252);
   height: 100vh;
 }
@@ -81,4 +83,10 @@
   height: 680px;
   background-color: white;
   text-align: center;
+}
+.react-datetime-picker__wrapper {
+  width: 200px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: white;
 }

@@ -105,7 +105,7 @@ export default () => {
           </span>
         </div>
       </div>
-      <div className="mt-5 ml-10">
+      <div className="mt-5 ml-5">
         <DateTimePicker
           format={"y-MM-dd"}
           calendarIcon={<BsFillCalendar2DayFill size={23} color="#3A8DEF" />}

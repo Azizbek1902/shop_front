@@ -65,9 +65,9 @@ export default () => {
   };
 
   const handleChange = (itemId) => {
-    if(itemId == ""){
-      setDataProduct(buttonCategorys)
-    }else {
+    if (itemId == "") {
+      setDataProduct(buttonCategorys);
+    } else {
       let data = buttonCategorys.filter((i) => i.category == itemId);
       setDataProduct(data);
     }
@@ -104,52 +104,64 @@ export default () => {
       </div>
       <div className="flex justify-center">
         <div className="w-[95%] md:w-[90%]">
-          <div className="grid grid-cols-2 gap-7 lg:grid-cols-3 md:grid-cols-2 xl:grid-cols-4">
-            {dataProduct.map((item, ind) => (
-              <div key={ind + 1}>
-                <div className="md:p-10 p-5 rounded-lg shadowCard">
-                  <div
-                    className="flex cursor-pointer justify-center"
-                    onClick={() => {
-                      navigate("/batafsil", {
-                        state: item,
-                      });
-                    }}
-                  >
-                    <img
-                      src={item.media}
-                      crossOrigin="anonymous"
-                      className="rounded-md w-full h-[150px]"
-                      alt="dsdsd"
-                    />
-                  </div>
-                  <div className="flex py-5 flex-col md:flex-row justify-center md:justify-between gap-3">
-                    <h1 className="text-xl font-semibold text-center">
-                      {item.title.length > 9
-                        ? item.title.slice(0, 9) + "...."
-                        : item.title}
-                    </h1>
-                    <h1 className="text-xl font-semibold text-center">
-                      {item.price} UZS
-                    </h1>
-                  </div>
-                  <div className="flex justify-center gap-3">
-                    <button
-                      onClick={() => handleClik(item)}
-                      className={`text-lg outline-none flex justify-center items-center px-5 py-2 rounded-md text-white font-medium
-           font-sans ${item.status ? "bg-[#30B545]" : "bg-[#EE8108]"}`}
-                    >
-                      {item.status ? (
-                        <BiCheckCircle color="white" size={25} />
-                      ) : (
-                        <TiShoppingCart color="white" size={25} />
-                      )}
-                    </button>
-                  </div>
-                </div>
+          {dataProduct.length == 0 ? (
+            <>
+              <div className="flex justify-center items-center mt-28">
+                <h1 className="text-3xl font-semibold lg:max-w-[400px] text-center font-serif">
+                  Bu kategoryaga oid mahsulot mavjud emas!{" "}
+                </h1>
               </div>
-            ))}
-          </div>
+            </>
+          ) : (
+            <>
+              <div className="grid grid-cols-2 gap-7 lg:grid-cols-3 md:grid-cols-2 xl:grid-cols-4">
+                {dataProduct.map((item, ind) => (
+                  <div key={ind + 1}>
+                    <div className="md:p-10 p-5 rounded-lg shadowCard">
+                      <div
+                        className="flex cursor-pointer justify-center"
+                        onClick={() => {
+                          navigate("/batafsil", {
+                            state: item,
+                          });
+                        }}
+                      >
+                        <img
+                          src={item.media}
+                          crossOrigin="anonymous"
+                          className="rounded-md w-full h-[150px]"
+                          alt="dsdsd"
+                        />
+                      </div>
+                      <div className="flex py-5 flex-col md:flex-row justify-center md:justify-between gap-3">
+                        <h1 className="text-xl font-semibold text-center">
+                          {item.title.length > 9
+                            ? item.title.slice(0, 9) + "...."
+                            : item.title}
+                        </h1>
+                        <h1 className="text-xl font-semibold text-center">
+                          {item.price} UZS
+                        </h1>
+                      </div>
+                      <div className="flex justify-center gap-3">
+                        <button
+                          onClick={() => handleClik(item)}
+                          className={`text-lg outline-none flex justify-center items-center px-5 py-2 rounded-md text-white font-medium
+           font-sans ${item.status ? "bg-[#30B545]" : "bg-[#EE8108]"}`}
+                        >
+                          {item.status ? (
+                            <BiCheckCircle color="white" size={25} />
+                          ) : (
+                            <TiShoppingCart color="white" size={25} />
+                          )}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
           {items?.length ? (
             <div className="">
               <div className="flex fixed justify-center bottom-10 right-4">

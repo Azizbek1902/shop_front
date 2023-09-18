@@ -1,6 +1,6 @@
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { useState, useEffect } from "react";
-import products from "../../services/products";
+import order from "../../services/order";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 export default () => {
@@ -21,14 +21,16 @@ export default () => {
     onSubmit: (values) => {
       const payload = {
         desc: values.desc,
+        status: 4
       };
       //   bu modaldagi ok btn ni funksiyasi
-      products
+      order
         .edit(data[0]._id, payload)
         .then()
         .catch((err) => console.log(err));
       setModal(false);
       formik.resetForm();
+      navigate("/dashboard");
     },
   });
   //   bu harbir page da chiqadigan jo'natish tayyorlash btn lardi funksiyasi
@@ -36,8 +38,8 @@ export default () => {
     const payload = {
       status: status,
     };
-    products
-      .create(payload)
+    order
+        .edit(data[0]._id, payload)
       .then()
       .catch((err) => console.log(err));
     navigate("/dashboard");

@@ -80,12 +80,13 @@ export default () => {
           .create(payload)
           .then(() => {
             qoshishToast();
+            setRefresh(refresh == true ? false : true);
           })
           .catch(() => creacteErorrToast());
       }
       formik.resetForm();
       setModal(false);
-      setRefresh(!refresh);
+      setRefresh(refresh == true ? false : true);
       setIsEdit({ type: false, data: null });
     },
   });

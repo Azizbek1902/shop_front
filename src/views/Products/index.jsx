@@ -176,7 +176,7 @@ export default () => {
                       className="flex cursor-pointer justify-center"
                     >
                       <img
-                        src={item.media}
+                        src={item?.media}
                         crossOrigin="anonymous"
                         className="rounded-md w-full h-[150px]"
                         alt="dsdsd"
@@ -188,9 +188,9 @@ export default () => {
                           Nomi:
                         </td>
                         <td className="pl-3 text-lg font-medium py-1 border border-[#c3c3c3] w-full">
-                          {item.title.length > 8
-                            ? item.title.slice(0, 8) + "...."
-                            : item.title}
+                          {item?.title.length > 8
+                            ? item?.title.slice(0, 8) + "...."
+                            : item?.title}
                         </td>
                       </tr>
                       <tr className="flex border border-[#c3c3c3]">
@@ -198,7 +198,7 @@ export default () => {
                           Narxi:
                         </td>
                         <td className="pl-3 text-lg font-medium py-1 border border-[#c3c3c3] w-full">
-                          {item.price}
+                          {item?.price}
                         </td>
                       </tr>
                       <tr className="flex border border-[#c3c3c3]">
@@ -206,7 +206,7 @@ export default () => {
                           Soni:
                         </td>
                         <td className="pl-3 text-lg font-medium py-1 border border-[#c3c3c3] w-full">
-                          {item.storeCount}
+                          {item?.storeCount}
                         </td>
                       </tr>
                       <tr className="flex border border-[#c3c3c3]">
@@ -214,9 +214,9 @@ export default () => {
                           Malumot:
                         </td>
                         <td className="pl-3 text-md font-medium py-1 border border-[#c3c3c3] w-full">
-                          {item.desc.length > 8
-                            ? item.desc.slice(0, 8) + "...."
-                            : item.desc}
+                          {item?.desc.length > 8
+                            ? item?.desc.slice(0, 8) + "...."
+                            : item?.desc}
                         </td>
                       </tr>
                     </table>

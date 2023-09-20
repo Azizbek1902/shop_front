@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "react-use-cart";
 import products from "../../services/products";
+import { getErorrToast } from "../../services/toaster";
 import category from "../../services/category";
 
 export default () => {
@@ -12,7 +13,6 @@ export default () => {
   const [dataProduct, setDataProduct] = useState([]);
   const [categorys, setCategorys] = useState([]);
   const [buttonCategorys, setButtonCategorys] = useState([]);
-  // const [categoryTitle, setCategoryTitle] = useState(categorys[0]?._id);
   const [refresh, setRefresh] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
@@ -21,7 +21,7 @@ export default () => {
       .then((res) => {
         setCategorys(res);
       })
-      .catch((err) => console.log(err));
+      .catch(() => getErorrToast());
     products
       .getAll()
       .then((res) => {
@@ -29,11 +29,11 @@ export default () => {
         setButtonCategorys(res);
         setRefresh(true);
       })
-      .catch((err) => console.log(err));
+      .catch(() => getErorrToast());
   }, [refresh]);
   const handleClik = (data) => {
     dataProduct.map((item) => {
-      if (item._id == data._id) {
+      if (item._id === data._id) {
         if (!item.status) {
           let backData = {
             media: data.media,
@@ -65,10 +65,10 @@ export default () => {
   };
 
   const handleChange = (itemId) => {
-    if (itemId == "") {
+    if (itemId === "") {
       setDataProduct(buttonCategorys);
     } else {
-      let data = buttonCategorys.filter((i) => i.category == itemId);
+      let data = buttonCategorys.filter((i) => i.category === itemId);
       setDataProduct(data);
     }
   };
@@ -76,7 +76,7 @@ export default () => {
   return (
     <div>
       <div className="mt-4 mb-10 flex overflow-x-auto justify-center mx-4">
-        <div className="flex gap-4 w-[900px] md:pl-0 pl-44 justify-center">
+        <div className="flex gap-4 w-full md:pl-0 pl-44 justify-center">
           <button
             onClick={() => {
               handleChange("");
@@ -96,7 +96,7 @@ export default () => {
                 className="text-lg outline-none h-16 px-5 py-2 w-40 rounded-md focus:text-white text-black font-bold
            font-sans bg-[#F0F0F0] focus:bg-[#EE8108]"
               >
-                {item.title}
+                {item?.title}
               </button>
             );
           })}
@@ -104,7 +104,7 @@ export default () => {
       </div>
       <div className="flex justify-center">
         <div className="w-[95%] md:w-[90%]">
-          {dataProduct.length == 0 ? (
+          {dataProduct.length === 0 ? (
             <>
               <div className="flex justify-center items-center mt-28">
                 <h1 className="text-3xl font-semibold lg:max-w-[400px] text-center font-serif">
@@ -114,10 +114,13 @@ export default () => {
             </>
           ) : (
             <>
-              <div className="grid grid-cols-2 gap-7 lg:grid-cols-3 md:grid-cols-2 xl:grid-cols-4">
+              <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 md:grid-cols-2 xl:grid-cols-4">
                 {dataProduct.map((item, ind) => (
                   <div key={ind + 1}>
-                    <div className="md:p-10 p-5 rounded-lg shadowCard">
+                    <div
+                      style={{ background: "white !important" }}
+                      className="md:p-10 p-5 rounded-lg shadowCard bg-white"
+                    >
                       <div
                         className="flex cursor-pointer justify-center"
                         onClick={() => {
@@ -127,29 +130,29 @@ export default () => {
                         }}
                       >
                         <img
-                          src={item.media}
+                          src={item?.media}
                           crossOrigin="anonymous"
-                          className="rounded-md w-full h-[150px]"
+                          className="rounded-md object-cover w-full md:h-[150px] h-[100px]"
                           alt="dsdsd"
                         />
                       </div>
                       <div className="flex py-5 flex-col md:flex-row justify-center md:justify-between gap-3">
                         <h1 className="text-xl font-semibold text-center">
-                          {item.title.length > 9
-                            ? item.title.slice(0, 9) + "...."
-                            : item.title}
+                          {item?.title.length > 9
+                            ? item?.title.slice(0, 9) + "...."
+                            : item?.title}
                         </h1>
                         <h1 className="text-xl font-semibold text-center">
-                          {item.price} UZS
+                          {item?.price} UZS
                         </h1>
                       </div>
                       <div className="flex justify-center gap-3">
                         <button
                           onClick={() => handleClik(item)}
                           className={`text-lg outline-none flex justify-center items-center px-5 py-2 rounded-md text-white font-medium
-           font-sans ${item.status ? "bg-[#30B545]" : "bg-[#EE8108]"}`}
+           font-sans ${item?.status ? "bg-[#30B545]" : "bg-[#EE8108]"}`}
                         >
-                          {item.status ? (
+                          {item?.status ? (
                             <BiCheckCircle color="white" size={25} />
                           ) : (
                             <TiShoppingCart color="white" size={25} />

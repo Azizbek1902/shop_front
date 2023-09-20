@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import order from "../../services/order";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
+import { creacteErorrToast, editErorrToast } from "../../services/toaster";
 export default () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
@@ -21,29 +22,27 @@ export default () => {
     onSubmit: (values) => {
       const payload = {
         desc: values.desc,
-        status: 4
+        status: 4,
       };
-      //   bu modaldagi ok btn ni funksiyasi
       order
         .edit(data[0]._id, payload)
         .then()
-        .catch((err) => console.log(err));
+        .catch(() => creacteErorrToast());
       setModal(false);
       formik.resetForm();
       navigate("/dashboard");
     },
   });
-  //   bu harbir page da chiqadigan jo'natish tayyorlash btn lardi funksiyasi
   const handleSendFunk = (status) => {
     const payload = {
       status: status,
     };
     order
-        .edit(data[0]._id, payload)
+      .edit(data[0]._id, payload)
       .then()
-      .catch((err) => console.log(err));
+      .catch(() => editErorrToast());
     navigate("/dashboard");
-  };
+  }; 
   return (
     <div className="orderOne flex items-center rounded-md">
       <div className="wrapOne relative min-h-[650px] flex justify-center pt-20">
@@ -103,21 +102,21 @@ export default () => {
                       return (
                         <div className="flex w-full py-2 items-center justify-start gap-10 rounded-md mb-5 px-5 shadowBorderCard">
                           <img
-                            src={item.media}
+                            src={item?.media}
                             crossOrigin="anonymous"
                             className="rounded-md w-[150px] border-2 h-[100px]"
                             alt="dsdsd"
                           />
                           <div>
                             <h3 className="text-xl font-medium pb-2">
-                              {item.title}
+                              {item?.title}
                             </h3>
-                            <h3 className="text-base">{item.desc}</h3>
+                            <h3 className="text-base">{item?.desc}</h3>
                           </div>
                           <div className="flex w-full justify-end">
                             <h4 className="text-xl flex gap-5 font-semibold">
-                              {item.quantity} dona X {item.price} so'm ={" "}
-                              {item.itemTotal} so'm
+                              {item?.quantity} dona X {item?.price} so'm =
+                              {item?.itemTotal} so'm
                             </h4>
                           </div>
                         </div>
@@ -125,7 +124,7 @@ export default () => {
                     })}
                   </div>
                   <div className="absolute left-0 gap-10 w-full flex justify-center bottom-8">
-                    {item.status == 0 ? (
+                    {item?.status == 0 ? (
                       <>
                         <button
                           onClick={() => {
@@ -139,7 +138,7 @@ export default () => {
                     ) : (
                       <></>
                     )}
-                    {item.status == 0 ? (
+                    {item?.status == 0 ? (
                       <button
                         onClick={() => handleSendFunk(1)}
                         className="cursor-pointer rounded-md top-4 left-7 py-2 px-4 bg-[#30B545] text-white"
@@ -149,7 +148,7 @@ export default () => {
                     ) : (
                       <></>
                     )}
-                    {item.status == 1 ? (
+                    {item?.status == 1 ? (
                       <button
                         onClick={() => handleSendFunk(2)}
                         className="cursor-pointer rounded-md top-4 left-7 py-2 px-4 bg-[#30B545] text-white"
@@ -159,7 +158,7 @@ export default () => {
                     ) : (
                       <></>
                     )}
-                    {item.status == 2 ? (
+                    {item?.status == 2 ? (
                       <button
                         onClick={() => handleSendFunk(3)}
                         className="cursor-pointer rounded-md top-4 left-7 py-2 px-4 bg-[#30B545] text-white"
@@ -169,7 +168,7 @@ export default () => {
                     ) : (
                       <></>
                     )}
-                    {item.status == 4 ? <></> : <></>}
+                    {item?.status == 4 ? <></> : <></>}
                   </div>
                 </div>
               );

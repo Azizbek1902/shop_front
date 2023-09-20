@@ -6,6 +6,12 @@ export const qoshishToast = () => {
   });
 };
 
+export const getErorrToast = () => {
+  toast.error("Ma'lumot yuklab olishda xatolik.", {
+    position: toast.POSITION.BOTTOM_RIGHT,
+  });
+};
+
 export const editToast = () => {
   toast.success("O'zgartirish muvafaqiyatli amalga oshirildi.", {
     position: toast.POSITION.BOTTOM_RIGHT,
@@ -36,7 +42,6 @@ export const loginErorrToast = () => {
   });
 };
 
-
 export const deleteErorrToast = () => {
   toast.error("O'chirishda hatolik yuz berdi !", {
     position: toast.POSITION.BOTTOM_RIGHT,
@@ -48,4 +53,3 @@ export const editErorrToast = () => {
     position: toast.POSITION.BOTTOM_RIGHT,
   });
 };
-

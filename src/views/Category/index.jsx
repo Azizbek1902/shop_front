@@ -3,6 +3,15 @@ import { AiFillDelete } from "react-icons/ai";
 import { BiMessageSquareEdit } from "react-icons/bi";
 import React, { useEffect, useState } from "react";
 import category from "../../services/category";
+import {
+  creacteErorrToast,
+  editErorrToast,
+  qoshishToast,
+  getErorrToast,
+  editToast,
+  deleteToast,
+  deleteErorrToast,
+} from "../../services/toaster";
 
 export default () => {
   const [modal, setModal] = useState(false);
@@ -18,7 +27,7 @@ export default () => {
         setData(res);
         setRefresh(true);
       })
-      .catch((err) => console.log(err));
+      .catch(() => getErorrToast());
   }, [refresh]);
 
   const handleClik = () => {
@@ -28,13 +37,13 @@ export default () => {
     if (edit !== null) {
       category
         .edit(edit, payload)
-        .then()
-        .catch((err) => console.log(err));
+        .then(() => editToast())
+        .catch(() => editErorrToast());
     } else {
       category
         .create(payload)
-        .then()
-        .catch((err) => console.log(err));
+        .then(() => qoshishToast())
+        .catch(() => creacteErorrToast());
     }
     setCategoryValue("");
     setModal(false);
@@ -50,8 +59,8 @@ export default () => {
     setRefresh(refresh ? false : true);
     category
       .delete(id)
-      .then()
-      .catch((err) => console.log(err));
+      .then(() => deleteToast())
+      .catch(() => deleteErorrToast());
   };
   return (
     <div>
@@ -121,11 +130,11 @@ export default () => {
           <div className="grid grid-cols-1 gap-5">
             {data.map((item) => (
               <div
-                key={item.id}
+                key={item?.id}
                 className="shadowCard flex justify-between items-center px-10 rounded-md p-3"
               >
                 <div className="text-xl text-center font-semibold">
-                  {item.title}
+                  {item?.title}
                 </div>
                 <div className="flex justify-center gap-3">
                   <button

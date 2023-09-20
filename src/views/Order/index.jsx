@@ -41,7 +41,7 @@ export default () => {
   const Demo = () => {
     getOrder({ status: 0, date: moment(dateValue).format("YYYY-MM-DD") });
   };
-  // setInterval(Demo, 30000);
+  setInterval(Demo, 180000);
 
   const getOneOrder = (item) => {
     localStorage.setItem("order", JSON.stringify(item));

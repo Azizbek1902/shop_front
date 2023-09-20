@@ -42,7 +42,7 @@ export default () => {
       .then()
       .catch(() => editErorrToast());
     navigate("/dashboard");
-  };
+  }; 
   return (
     <div className="orderOne flex items-center rounded-md">
       <div className="wrapOne relative min-h-[650px] flex justify-center pt-20">

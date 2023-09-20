@@ -8,8 +8,8 @@ export default () => {
   let keyData = [];
   let valueData = [];
   console.log(state)
-  if (state.parametr) {
-    for (const [key, value] of Object.entries(state.parametr)) {
+  if (state?.parametr) {
+    for (const [key, value] of Object.entries(state?.parametr)) {
       keyData.push(key);
       valueData.push(value);
     }
@@ -32,7 +32,7 @@ export default () => {
           <div className="grid shadowCard rounded-lg grid-cols-1 md:grid-cols-2 gap-10">
             <div className="rounded-md p-3">
               <img
-                src={state.media}
+                src={state?.media}
                 crossOrigin="anonymous"
                 className="rounded-md w-full h-full"
                 alt="dsdsd"
@@ -45,7 +45,7 @@ export default () => {
                     Nomi:
                   </td>
                   <td className="text-md font-medium py-2 pl-3 border-2 border-[#aeaeae]">
-                    {state.title}
+                    {state?.title}
                   </td>
                 </tr>
                 <tr className="border-2 border-[#aeaeae]">
@@ -53,7 +53,7 @@ export default () => {
                     Narxi:
                   </td>
                   <td className="text-md font-medium py-2 pl-3 border-2 border-[#aeaeae]">
-                    {state.price}
+                    {state?.price}
                   </td>
                 </tr>
                 {keyData.map((item, ind) => (

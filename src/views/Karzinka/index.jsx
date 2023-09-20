@@ -114,7 +114,7 @@ export default () => {
                   </button>
                   <div className="md:p-10 flex items-center p-2 w-full rounded-lg">
                     <div
-                      className="flex cursor-pointer pt-5 justify-center"
+                      className="flex cursor-pointer justify-center"
                       onClick={() => {
                         navigate("/batafsil", { state: item });
                       }}
@@ -129,9 +129,9 @@ export default () => {
                     <div className="w-full pl-5">
                       <div className="flex pb-5 flex-col md:flex-row justify-center md:justify-between gap-3">
                         <h1 className="text-xl font-semibold text-start">
-                          {item.title.length > 10
-                            ? item.title.slice(0, 10) + "...."
-                            : item.title}
+                          {item?.title.length > 10
+                            ? item?.title.slice(0, 10) + "...."
+                            : item?.title}
                         </h1>
                       </div>
                       <div className="flex items-center justify-between gap-3">
@@ -143,19 +143,19 @@ export default () => {
                           -
                         </button>
                         <h1 className="text-xl font-sans font-medium">
-                          {item.quantity}
+                          {item?.quantity}
                         </h1>
                         <button
                           className="text-3xl outline-none px-3 pb-1 rounded-md text-white font-medium
          font-sans bg-[#EE8108]"
                           onClick={() =>
-                            updateItemQuantity(item.id, item.quantity + 1)
+                            updateItemQuantity(item?.id, item?.quantity + 1)
                           }
                         >
                           +
                         </button>
                         <h1 className="text-xl font-semibold text-center">
-                          {item.itemTotal} UZS
+                          {item?.itemTotal} UZS
                         </h1>
                       </div>
                     </div>

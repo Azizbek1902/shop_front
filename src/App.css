@@ -38,7 +38,7 @@
 
 .orders {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .orders table {

@@ -1,9 +1,9 @@
-import { BiLogOut } from "react-icons/bi";
-import { MdAddShoppingCart } from "react-icons/md";
+import { BiCheckCircle, BiLogOut } from "react-icons/bi";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "react-use-cart";
 import products from "../../services/products";
+import { TiShoppingCart } from "react-icons/ti";
 
 export default () => {
   const navigate = useNavigate();
@@ -12,7 +12,6 @@ export default () => {
   const { addItem } = useCart();
   let keyData = [];
   let valueData = [];
-  console.log(state, 'ssssssssss')
   if (state?.parametr) {
     for (const [key, value] of Object.entries(state.parametr)) {
       keyData.push(key);
@@ -29,7 +28,7 @@ export default () => {
   }, []);
   const handleClik = (data) => {
     dataProduct.map((item) => {
-      if (item.id == data._id) {
+      if (item.id === data._id) {
         if (!item.status) {
           console.log(item, "item");
           let newData = {
@@ -69,7 +68,7 @@ export default () => {
           <div className="grid shadowCard rounded-lg grid-cols-1 md:grid-cols-2 gap-10">
             <div className="rounded-md p-3">
               <img
-                src={state.media}
+                src={state?.media}
                 crossOrigin="anonymous"
                 className="rounded-md w-full h-full"
                 alt="dsdsd"
@@ -82,7 +81,7 @@ export default () => {
                     Nomi:
                   </td>
                   <td className="text-md font-medium py-2 pl-3 border-2 border-[#aeaeae]">
-                    {state.title}
+                    {state?.title}
                   </td>
                 </tr>
                 <tr className="border-2 border-[#aeaeae]">
@@ -90,7 +89,7 @@ export default () => {
                     Narxi:
                   </td>
                   <td className="text-md font-medium py-2 pl-3 border-2 border-[#aeaeae]">
-                    {state.price}
+                    {state?.price}
                   </td>
                 </tr>
                 {keyData.map((item, ind) => (
@@ -108,17 +107,21 @@ export default () => {
                     Malumot:
                   </td>
                   <td className="text-md font-medium py-2 pl-3 border-2 border-[#aeaeae]">
-                    {state.desc}
+                    {state?.desc}
                   </td>
                 </tr>
               </table>
               <div className="flex justify-center mt-10">
                 <button
                   onClick={() => handleClik(state)}
-                  className="text-lg outline-none px-5 py-2 rounded-md text-white font-medium
-           font-sans bg-[#30B545]"
+                  className={`text-lg outline-none flex justify-center items-center px-5 py-2 rounded-md text-white font-medium
+           font-sans ${state?.status ? "bg-[#30B545]" : "bg-[#EE8108]"}`}
                 >
-                  <MdAddShoppingCart size={30} />
+                  {state?.status ? (
+                    <BiCheckCircle color="white" size={25} />
+                  ) : (
+                    <TiShoppingCart color="white" size={25} />
+                  )}
                 </button>
               </div>
             </div>

@@ -36,7 +36,7 @@ export default () => {
   };
   useEffect(() => {
     getOrder({ status: 0, date: moment(dateValue).format("YYYY-MM-DD") });
-  }, []);
+  }, []);  
 
   const Demo = () => {
     getOrder({ status: 0, date: moment(dateValue).format("YYYY-MM-DD") });

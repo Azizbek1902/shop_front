@@ -36,12 +36,11 @@ export default () => {
   };
   useEffect(() => {
     getOrder({ status: 0, date: moment(dateValue).format("YYYY-MM-DD") });
-  }, []);  
+  }, []);
 
-  const Demo = () => {
-    getOrder({ status: 0, date: moment(dateValue).format("YYYY-MM-DD") });
-  };
-  setInterval(Demo, 180000);
+  useEffect(()=>{
+    setInterval(()=>getOrder({ status: 0, date: moment(dateValue).format("YYYY-MM-DD") }), 180000);
+  }, [])
 
   const getOneOrder = (item) => {
     localStorage.setItem("order", JSON.stringify(item));

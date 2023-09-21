@@ -37,7 +37,7 @@ export default () => {
   if (isEmpty)
     return (
       <>
-        <div className="flex justify-center mt-10">
+        <div className="flex justify-center bg-white mt-10">
           <button
             className=" outline-none pl-3 pr-4 py-3 rounded-md text-white font-medium
  font-sans bg-[#30B545]"

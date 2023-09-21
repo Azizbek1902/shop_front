@@ -65,7 +65,10 @@ export default () => {
       </div>
       <div className="flex justify-center mt-28">
         <div className="w-[90%] md:w-[90%]">
-          <div className="grid shadowCard rounded-lg grid-cols-1 md:grid-cols-2 gap-10">
+          <div
+            style={{ background: "white !important" }}
+            className="grid bg-white shadowCard rounded-lg grid-cols-1 md:grid-cols-2 gap-10"
+          >
             <div className="rounded-md p-3">
               <img
                 src={state?.media}

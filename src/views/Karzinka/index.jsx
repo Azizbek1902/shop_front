@@ -1,10 +1,10 @@
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useCart } from "react-use-cart";
 import { useNavigate } from "react-router-dom";
 import products from "../../services/products";
-import { useTelegram } from '../telegram/tg';
+import { useTelegram } from "../telegram/tg";
 export default () => {
   const { tg, queryId } = useTelegram();
   const navigate = useNavigate();
@@ -22,15 +22,15 @@ export default () => {
       queryId: queryId,
       cartTotal: cartTotal,
       status: 0,
-      items: items
-    }
+      items: items,
+    };
     tg.sendData(JSON.stringify(data));
-  }
+  };
 
   useEffect(() => {
-    tg.onEvent('mainButtonClicked', sendData);
+    tg.onEvent("mainButtonClicked", sendData);
     return () => {
-      tg.offEvent('mainButtonClicked', sendData);
+      tg.offEvent("mainButtonClicked", sendData);
     };
   }, [sendData]);
 
@@ -103,7 +103,11 @@ export default () => {
           </div>
           <div className="grid mt-10 grid-cols-1 gap-7 lg:grid-cols-3 md:grid-cols-2 xl:grid-cols-4">
             {items.map((item, ind) => (
-              <div key={ind + 1} className="relative shadowCard">
+              <div
+                key={ind + 1}
+                className="relative shadowCard bg-white"
+                style={{ background: "white !important" }}
+              >
                 <div className="flex items-center gap-5">
                   <button
                     className="text-lg top-3 right-3  absolute outline-none px-2 py-2 rounded-md text-white font-medium
@@ -170,7 +174,7 @@ export default () => {
           </div>
           <div className="flex justify-center">
             <button
-            onClick={()=>sendData()}
+              onClick={() => sendData()}
               className="mt-10 mb-5 outline-none pl-3 pr-4 py-3 rounded-md text-white font-medium
          font-sans bg-[#30B545]"
             >

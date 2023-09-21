@@ -85,7 +85,7 @@ export default () => {
   };
   return (
     <>
-      <div className="flex justify-center">
+      <div className="flex justify-center bg-white">
         <div className="w-[90%] mt-10">
           <button
             className="absolute top-5 left-5 outline-none pl-3 pr-4 py-3 rounded-md text-white font-medium

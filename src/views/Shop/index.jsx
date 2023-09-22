@@ -74,9 +74,9 @@ export default () => {
   };
 
   return (
-    <div>
-      <div className="mt-4 mb-10 flex overflow-x-auto justify-center bg-white mx-4">
-        <div className="flex gap-4 w-full justify-center">
+    <div className="bg-white">
+      <div className="mt-4 mb-10 flex overflow-x-auto justify-center mx-4">
+        <div className="flex gap-4 w-full md:pl-0 pl-44 justify-center">
           <button
             onClick={() => {
               handleChange("");
@@ -102,7 +102,7 @@ export default () => {
           })}
         </div>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center bg-white">
         <div className="w-[95%] md:w-[90%]">
           {dataProduct.length === 0 ? (
             <>

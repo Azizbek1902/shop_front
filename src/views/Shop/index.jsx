@@ -75,8 +75,8 @@ export default () => {
 
   return (
     <div>
-      <div className="mt-4 mb-10 flex overflow-x-auto justify-center mx-4">
-        <div className="flex gap-4 w-full md:pl-0 pl-44 justify-center">
+      <div className="mt-4 mb-10 flex overflow-x-auto justify-center bg-white mx-4">
+        <div className="flex gap-4 w-full justify-center">
           <button
             onClick={() => {
               handleChange("");
@@ -108,7 +108,7 @@ export default () => {
             <>
               <div className="flex justify-center items-center mt-28">
                 <h1 className="text-3xl font-semibold lg:max-w-[400px] text-center font-serif">
-                  Bu kategoryaga oid mahsulot mavjud emas!{" "}
+                  Bu kategoryaga oid mahsulot mavjud emas!
                 </h1>
               </div>
             </>

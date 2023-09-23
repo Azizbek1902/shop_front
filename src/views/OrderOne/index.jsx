@@ -45,8 +45,8 @@ export default () => {
     navigate("/dashboard");
   };
   return (
-    <div className="orderOne flex items-center rounded-md">
-      <div className="wrapOne relative min-h-[650px] flex justify-center pt-20">
+    <div className="orderOne min-h-screen max-h-full pb-10 flex items-center rounded-md pt-20">
+      <div className="wrapOne relative min-h-full max-h-full flex justify-center pt-20">
         <div>
           <button
             className="cursor-pointer rounded-md absolute top-4 left-7 py-2 px-4 bg-[#30B545] text-white"
@@ -128,7 +128,7 @@ export default () => {
                       );
                     })}
                   </div>
-                  <div className="absolute left-0 gap-10 w-full flex justify-center bottom-8">
+                  <div className="mb-5 gap-10 w-full items-end flex justify-center">
                     {item?.status == 0 ? (
                       <>
                         <button

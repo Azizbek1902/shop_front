@@ -37,8 +37,7 @@ export default () => {
   };
   useEffect(() => {
     getOrder({ status: 0, date: moment(dateValue).format("YYYY-MM-DD") });
-    setRefresh(true);
-  }, [refresh]);
+  }, []);
 
   useEffect(() => {
     let statusD = localStorage.getItem("statusBtn");
@@ -50,7 +49,8 @@ export default () => {
         }),
       5000
     );
-  }, []);
+    setRefresh(true);
+  }, [refresh]);
   const getOneOrder = (item) => {
     localStorage.setItem("order", JSON.stringify(item));
     navigate(`/order/one`);

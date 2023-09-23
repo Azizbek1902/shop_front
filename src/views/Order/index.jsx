@@ -12,7 +12,6 @@ export default () => {
   const navigate = useNavigate();
   const [dateValue, setDateValue] = useState(moment());
   const [order, setOrder] = useState([]);
-  const [statusDate, setStatusDate] = useState(0);
   const [statistic, setStatistic] = useState({
     new: 0,
     inProgress: 0,
@@ -40,16 +39,16 @@ export default () => {
   }, []);
 
   useEffect(() => {
+    let statusD = localStorage.getItem("statusBtn");
     setInterval(
       () =>
         getOrder({
-          status: statusDate,
+          status: statusD,
           date: moment(dateValue).format("YYYY-MM-DD"),
         }),
-      180000
+      5000
     );
   }, []);
-
   const getOneOrder = (item) => {
     localStorage.setItem("order", JSON.stringify(item));
     navigate(`/order/one`);
@@ -79,7 +78,7 @@ export default () => {
               status: 0,
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
-            setStatusDate(0);
+            localStorage.setItem("statusBtn", 0);
           }}
         >
           Yangi
@@ -94,7 +93,7 @@ export default () => {
               status: 1,
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
-            setStatusDate(1);
+            localStorage.setItem("statusBtn", 1);
           }}
         >
           Tayyorlanmoqda
@@ -109,7 +108,7 @@ export default () => {
               status: 2,
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
-            setStatusDate(2);
+            localStorage.setItem("statusBtn", 2);
           }}
         >
           Jo'natildi
@@ -124,7 +123,7 @@ export default () => {
               status: 3,
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
-            setStatusDate(3);
+            localStorage.setItem("statusBtn", 3);
           }}
         >
           Yetkazildi
@@ -139,7 +138,7 @@ export default () => {
               status: 4,
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
-            setStatusDate(4);
+            localStorage.setItem("statusBtn", 4);
           }}
         >
           Bekor qilindi

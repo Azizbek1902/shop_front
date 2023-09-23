@@ -30,7 +30,7 @@ export default () => {
     orderService
       .getStatistic(data)
       .then((res) => {
-        setStatistic(res);
+        setStatistic(res); 
       })
       .catch((err) => console.log(err));
   };
@@ -46,7 +46,7 @@ export default () => {
           status: statusD,
           date: moment(dateValue).format("YYYY-MM-DD"),
         }),
-      5000
+      180000
     );
   }, []);
   const getOneOrder = (item) => {

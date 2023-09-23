@@ -12,6 +12,7 @@ export default () => {
   const navigate = useNavigate();
   const [dateValue, setDateValue] = useState(moment());
   const [order, setOrder] = useState([]);
+  const [refresh, setRefresh] = useState(false);
   const [statistic, setStatistic] = useState({
     new: 0,
     inProgress: 0,
@@ -36,7 +37,8 @@ export default () => {
   };
   useEffect(() => {
     getOrder({ status: 0, date: moment(dateValue).format("YYYY-MM-DD") });
-  }, []);
+    setRefresh(true);
+  }, [refresh]);
 
   useEffect(() => {
     let statusD = localStorage.getItem("statusBtn");
@@ -79,6 +81,7 @@ export default () => {
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
             localStorage.setItem("statusBtn", 0);
+            setRefresh(!refresh);
           }}
         >
           Yangi
@@ -94,6 +97,7 @@ export default () => {
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
             localStorage.setItem("statusBtn", 1);
+            setRefresh(!refresh);
           }}
         >
           Tayyorlanmoqda
@@ -109,6 +113,7 @@ export default () => {
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
             localStorage.setItem("statusBtn", 2);
+            setRefresh(!refresh);
           }}
         >
           Jo'natildi
@@ -124,6 +129,7 @@ export default () => {
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
             localStorage.setItem("statusBtn", 3);
+            setRefresh(!refresh);
           }}
         >
           Yetkazildi
@@ -139,6 +145,7 @@ export default () => {
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
             localStorage.setItem("statusBtn", 4);
+            setRefresh(!refresh);
           }}
         >
           Bekor qilindi

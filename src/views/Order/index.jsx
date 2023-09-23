@@ -12,7 +12,6 @@ export default () => {
   const navigate = useNavigate();
   const [dateValue, setDateValue] = useState(moment());
   const [order, setOrder] = useState([]);
-  const [refresh, setRefresh] = useState(false);
   const [statistic, setStatistic] = useState({
     new: 0,
     inProgress: 0,
@@ -49,8 +48,7 @@ export default () => {
         }),
       5000
     );
-    setRefresh(true);
-  }, [refresh]);
+  }, []);
   const getOneOrder = (item) => {
     localStorage.setItem("order", JSON.stringify(item));
     navigate(`/order/one`);
@@ -81,7 +79,6 @@ export default () => {
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
             localStorage.setItem("statusBtn", 0);
-            setRefresh(!refresh);
           }}
         >
           Yangi
@@ -97,7 +94,6 @@ export default () => {
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
             localStorage.setItem("statusBtn", 1);
-            setRefresh(!refresh);
           }}
         >
           Tayyorlanmoqda
@@ -113,7 +109,6 @@ export default () => {
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
             localStorage.setItem("statusBtn", 2);
-            setRefresh(!refresh);
           }}
         >
           Jo'natildi
@@ -129,7 +124,6 @@ export default () => {
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
             localStorage.setItem("statusBtn", 3);
-            setRefresh(!refresh);
           }}
         >
           Yetkazildi
@@ -145,7 +139,6 @@ export default () => {
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
             localStorage.setItem("statusBtn", 4);
-            setRefresh(!refresh);
           }}
         >
           Bekor qilindi

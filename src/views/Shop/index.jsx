@@ -9,7 +9,7 @@ import { getErorrToast } from "../../services/toaster";
 import category from "../../services/category";
 
 export default () => {
-  const { addItem, items, totalUniqueItems } = useCart();
+  const { addItem, updateItem, items, totalUniqueItems } = useCart();
   const [dataProduct, setDataProduct] = useState([]);
   const [categorys, setCategorys] = useState([]);
   const [buttonCategorys, setButtonCategorys] = useState([]);
@@ -32,36 +32,10 @@ export default () => {
       .catch(() => getErorrToast());
   }, [refresh]);
   const handleClik = (data) => {
-    dataProduct.map((item) => {
-      if (item._id === data._id) {
-        if (!item.status) {
-          let backData = {
-            media: data.media,
-            title: data.title,
-            desc: data.desc,
-            price: data.price,
-            status: true,
-          };
-          const id = data._id;
-          products
-            .edit(id, backData)
-            .then()
-            .catch((err) => console.log(err));
-          setRefresh(false);
-          let itemData = {
-            id: data._id,
-            media: data.media,
-            title: data.title,
-            desc: data.desc,
-            price: data.price,
-            status: true,
-          };
-          addItem(itemData);
-        }
-      } else {
-        console.log("errr");
-      }
-    });
+    if (data?.status === false) {
+      data.status = true;
+      addItem(data);
+    }
   };
 
   const handleChange = (itemId) => {
@@ -76,12 +50,12 @@ export default () => {
   return (
     <div className="bg-white w-full pt-4">
       <div className="mb-10 flex justify-center w-full">
-        <div className="flex gap-4 min-w-full md:pl-0 pl-40 overflow-x-auto justify-center mx-4">
+        <div className="flex gap-4 max-w-[900px] overflow-x-auto mx-4">
           <button
             onClick={() => {
               handleChange("");
             }}
-            className="text-lg outline-none h-16 px-5 py-2 w-40 rounded-md focus:text-white text-black font-bold
+            className="text-lg outline-none ml-0 h-16 px-5 py-2 w-40 rounded-md focus:text-white text-black font-bold
            font-sans bg-[#F0F0F0] focus:bg-[#EE8108]"
           >
             All

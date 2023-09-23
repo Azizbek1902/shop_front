@@ -7,9 +7,8 @@ import { TiShoppingCart } from "react-icons/ti";
 
 export default () => {
   const navigate = useNavigate();
-  const [dataProduct, setDataProduct] = useState([]);
   const { state } = useLocation();
-  const { addItem } = useCart();
+  const { addItem, updateItem } = useCart();
   let keyData = [];
   let valueData = [];
   if (state?.parametr) {
@@ -18,37 +17,13 @@ export default () => {
       valueData.push(value);
     }
   }
-  useEffect(() => {
-    products
-      .getAll()
-      .then((res) => {
-        setDataProduct(res);
-      })
-      .catch((err) => console.log(err));
-  }, []);
   const handleClik = (data) => {
-    dataProduct.map((item) => {
-      if (item.id === data._id) {
-        if (!item.status) {
-          console.log(item, "item");
-          let newData = {
-            id: data._id,
-            img: data.img,
-            title: data.title,
-            desc: data.desc,
-            price: data.price,
-            status: true,
-          };
-          addItem(data);
-          products
-            .edit(data._id, newData)
-            .then()
-            .catch((err) => console.log(err));
-        }
-      } else {
-        console.log("errr");
+    if (data.status === false) {
+      if (data?.status === false) {
+        data.status = true;
+        addItem(data);
       }
-    });
+    }
   };
   return (
     <div className="">

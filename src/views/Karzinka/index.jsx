@@ -3,7 +3,6 @@ import { AiFillDelete } from "react-icons/ai";
 import React, { useEffect } from "react";
 import { useCart } from "react-use-cart";
 import { useNavigate } from "react-router-dom";
-import products from "../../services/products";
 import { useTelegram } from "../telegram/tg";
 export default () => {
   const { tg, queryId } = useTelegram();
@@ -25,6 +24,8 @@ export default () => {
       items: items,
     };
     tg.sendData(JSON.stringify(data));
+    localStorage.clear();
+    navigate("/");
   };
 
   useEffect(() => {
@@ -55,33 +56,9 @@ export default () => {
     );
   const hanfldeClik = (data) => {
     removeItem(data.id);
-    let newData = {
-      media: data.media,
-      title: data.title,
-      desc: data.desc,
-      price: data.price,
-      status: false,
-    };
-    const id = data.id;
-    products
-      .edit(id, newData)
-      .then()
-      .catch((err) => console.log(err));
   };
   const minusFunk = (item) => {
     updateItemQuantity(item.id, item.quantity - 1);
-    let newData = {
-      media: item.media,
-      title: item.title,
-      desc: item.desc,
-      price: item.price,
-      status: false,
-    };
-    const id = item.id;
-    products
-      .edit(id, newData)
-      .then()
-      .catch((err) => console.log(err));
   };
   return (
     <>

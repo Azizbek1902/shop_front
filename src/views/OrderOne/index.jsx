@@ -34,6 +34,7 @@ export default () => {
     },
   });
   const handleSendFunk = (status) => {
+    console.log(status);
     const payload = {
       status: status,
     };
@@ -42,7 +43,7 @@ export default () => {
       .then()
       .catch(() => editErorrToast());
     navigate("/dashboard");
-  }; 
+  };
   return (
     <div className="orderOne flex items-center rounded-md">
       <div className="wrapOne relative min-h-[650px] flex justify-center pt-20">
@@ -111,7 +112,11 @@ export default () => {
                             <h3 className="text-xl font-medium pb-2">
                               {item?.title}
                             </h3>
-                            <h3 className="text-base">{item?.desc}</h3>
+                            <h3 className="text-base">
+                              {item?.desc.length > 10
+                                ? item?.desc.slice(0, 10)
+                                : item?.desc}
+                            </h3>
                           </div>
                           <div className="flex w-full justify-end">
                             <h4 className="text-xl flex gap-5 font-semibold">

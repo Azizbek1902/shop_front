@@ -12,6 +12,7 @@ export default () => {
   const navigate = useNavigate();
   const [dateValue, setDateValue] = useState(moment());
   const [order, setOrder] = useState([]);
+  const [statusDate, setStatusDate] = useState(0);
   const [statistic, setStatistic] = useState({
     new: 0,
     inProgress: 0,
@@ -30,7 +31,7 @@ export default () => {
     orderService
       .getStatistic(data)
       .then((res) => {
-        setStatistic(res); 
+        setStatistic(res);
       })
       .catch((err) => console.log(err));
   };
@@ -39,16 +40,16 @@ export default () => {
   }, []);
 
   useEffect(() => {
-    let statusD = localStorage.getItem("statusBtn");
     setInterval(
       () =>
         getOrder({
-          status: statusD,
+          status: statusDate,
           date: moment(dateValue).format("YYYY-MM-DD"),
         }),
       180000
     );
   }, []);
+
   const getOneOrder = (item) => {
     localStorage.setItem("order", JSON.stringify(item));
     navigate(`/order/one`);
@@ -78,7 +79,7 @@ export default () => {
               status: 0,
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
-            localStorage.setItem("statusBtn", 0);
+            setStatusDate(0);
           }}
         >
           Yangi
@@ -93,7 +94,7 @@ export default () => {
               status: 1,
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
-            localStorage.setItem("statusBtn", 1);
+            setStatusDate(1);
           }}
         >
           Tayyorlanmoqda
@@ -108,7 +109,7 @@ export default () => {
               status: 2,
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
-            localStorage.setItem("statusBtn", 2);
+            setStatusDate(2);
           }}
         >
           Jo'natildi
@@ -123,7 +124,7 @@ export default () => {
               status: 3,
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
-            localStorage.setItem("statusBtn", 3);
+            setStatusDate(3);
           }}
         >
           Yetkazildi
@@ -138,7 +139,7 @@ export default () => {
               status: 4,
               date: moment(dateValue).format("YYYY-MM-DD"),
             });
-            localStorage.setItem("statusBtn", 4);
+            setStatusDate(4);
           }}
         >
           Bekor qilindi

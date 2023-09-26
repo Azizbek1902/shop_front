@@ -39,17 +39,6 @@ export default () => {
     getOrder({ status: 0, date: moment(dateValue).format("YYYY-MM-DD") });
   }, []);
 
-  useEffect(() => {
-    setInterval(
-      () =>
-        getOrder({
-          status: statusDate,
-          date: moment(dateValue).format("YYYY-MM-DD"),
-        }),
-      180000
-    );
-  }, []);
-
   const getOneOrder = (item) => {
     localStorage.setItem("order", JSON.stringify(item));
     navigate(`/order/one`);
@@ -69,85 +58,12 @@ export default () => {
       })
       .catch(() => getErorrToast());
   };
+
   return (
     <>
-      <div className="menu_order mx-11">
-        <div
-          className="orderMenu relative bg-[#fd8f30] text-white "
-          onClick={() => {
-            getOrder({
-              status: 0,
-              date: moment(dateValue).format("YYYY-MM-DD"),
-            });
-            setStatusDate(0);
-          }}
-        >
-          Yangi
-          <span className="absolute -top-1 shadowNum bg-white rounded-full font-semibold w-8 h-8 flex justify-center items-center text-[#fd8f30] text-lg -right-1 ">
-            {statistic?.new}
-          </span>
-        </div>
-        <div
-          className="orderMenu relative bg-[#3A8DEF] text-white"
-          onClick={() => {
-            getOrder({
-              status: 1,
-              date: moment(dateValue).format("YYYY-MM-DD"),
-            });
-            setStatusDate(1);
-          }}
-        >
-          Tayyorlanmoqda
-          <span className="absolute -top-1 shadowNum bg-white rounded-full font-semibold w-8 h-8 flex justify-center items-center text-[#3A8DEF] text-lg -right-1 ">
-            {statistic?.inProgress}
-          </span>
-        </div>
-        <div
-          className="orderMenu relative bg-[#21bbb3] text-white"
-          onClick={() => {
-            getOrder({
-              status: 2,
-              date: moment(dateValue).format("YYYY-MM-DD"),
-            });
-            setStatusDate(2);
-          }}
-        >
-          Jo'natildi
-          <span className="absolute -top-1 shadowNum bg-white rounded-full font-semibold w-8 h-8 flex justify-center items-center text-[#21bbb3] text-lg -right-1 ">
-            {statistic?.sending}
-          </span>
-        </div>
-        <div
-          className="orderMenu relative bg-[#2a890b] text-white"
-          onClick={() => {
-            getOrder({
-              status: 3,
-              date: moment(dateValue).format("YYYY-MM-DD"),
-            });
-            setStatusDate(3);
-          }}
-        >
-          Yetkazildi
-          <span className="absolute -top-1 shadowNum bg-white rounded-full font-semibold w-8 h-8 flex justify-center items-center text-[#2a890b] text-lg -right-1 ">
-            {statistic?.success}
-          </span>
-        </div>
-        <div
-          className="orderMenu relative bg-[#8b1540] text-white"
-          onClick={() => {
-            getOrder({
-              status: 4,
-              date: moment(dateValue).format("YYYY-MM-DD"),
-            });
-            setStatusDate(4);
-          }}
-        >
-          Bekor qilindi
-          <span className="absolute -top-1 shadowNum bg-white rounded-full font-semibold w-8 h-8 flex justify-center items-center text-[#8b1540] text-lg -right-1 ">
-            {statistic?.cansel}
-          </span>
-        </div>
-      </div>
+      <h1 className="mt-20 pb-10 text-center text-4xl font-semibold font-serif">
+        Yangi buyurma berilgan mahsulotlar ro'yxati
+      </h1>
       <div className="flex justify-start w-full">
         <div className="mt-5 ml-16">
           <DateTimePicker

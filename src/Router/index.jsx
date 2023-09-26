@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Products from "../views/Products";
-import Order from "../views/Order";
+import Cancel from "../views/Cancel";
+import Yangi from "../views/Yangi";
+import Tayyorlanmoqda from "../views/Tayyorlanmoqda";
+import Jonatildi from "../views/Jonatildi";
+import Yetkazildi from "../views/Yetkazildi";
 import Category from "../views/Category";
 
 export default () => {
-  const [page, setPage] = useState("home");
+  const [page, setPage] = useState("new");
   const [open, setOpen] = useState(true);
   const handleClik = () => {
     setOpen(!open);
@@ -16,7 +20,11 @@ export default () => {
   let pages = {
     about: <Products pageFunc={handlePage} />,
     category: <Category />,
-    home: <Order />,
+    new: <Yangi />,
+    sending: <Tayyorlanmoqda />,
+    send: <Jonatildi />,
+    arrive: <Yetkazildi />,
+    cancel: <Cancel />,
   };
   return (
     <div>

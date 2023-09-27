@@ -37,7 +37,7 @@ export default () => {
 
   return (
     <>
-      <h1 className="mt-20 text-center text-4xl font-semibold font-serif">
+      <h1 className="mt-20 textStyle text-center text-4xl font-semibold font-serif">
         Yangi buyurma berilgan mahsulotlar ro'yxati
       </h1>
       <div className="flex justify-center">

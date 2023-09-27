@@ -179,7 +179,7 @@ export default ({ open, onclik, pageFunk }) => {
                 <MdOutlineCancelPresentation color="#fff" size={25} />
                 {open ? "Bekor qilindi" : <></>}
               </NavLink>
-              <p className="absolute -top-3 shadow5 bg-[#6a0329] text-white  w-[40px] h-[35px] flex items-center justify-center  text-center rounded-full right-2">
+              <p className="absolute -top-3 shadow5 bg-[#801e42] text-white  w-[40px] h-[35px] flex items-center justify-center  text-center rounded-full right-2">
                 {statistic.cansel}
               </p>
             </li>

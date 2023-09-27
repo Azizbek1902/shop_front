@@ -5,7 +5,7 @@
   display: flex;
   gap: 15px;
   color: #fff;
-  background: #fd8f30;
+  background: #fea04e;
   border-radius: 8px;
   transition: 0.3s all;
 }
@@ -61,7 +61,7 @@
   border-radius: 8px;
 } 
 .shadoww {
-  box-shadow: 0px 0px 5px #ff7700;
+  box-shadow: 0px 0px 5px #e27619;
 }
 .shadow4 {
   box-shadow: 0px 0px 5px #30671d;

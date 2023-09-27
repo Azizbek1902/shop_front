@@ -67,8 +67,8 @@ export default ({ open, onclik, pageFunk }) => {
                 <RiLuggageCartLine size={25} color="#fff" />
                 {open ? "Yangi" : <></>}
               </NavLink>
-              <p className="absolute -top-2 shadoww bg-[#ff7700] text-white min-w-[30px]  text-center rounded-full right-3">
-                {statistic.new}
+              <p className="absolute -top-3 shadoww bg-[#e27619] w-[40px] h-[35px] text-white flex items-center justify-center text-center rounded-full right-2">
+                {statistic.new} 
               </p>
             </li>
             <li
@@ -95,7 +95,7 @@ export default ({ open, onclik, pageFunk }) => {
                 <BiLoader size={25} color="#fff" />
                 {open ? "Tayyorlanmoqda" : <></>}
               </NavLink>
-              <p className="absolute -top-2 shadow2 bg-[#2545ff] text-white min-w-[30px]  text-center rounded-full right-3">
+              <p className="absolute -top-3 shadow2 bg-[#2545ff] text-white  w-[40px] h-[35px] flex items-center justify-center  text-center rounded-full right-2">
                 {statistic.inProgress}
               </p>
             </li>
@@ -123,7 +123,7 @@ export default ({ open, onclik, pageFunk }) => {
                 <TbTruckDelivery size={25} color="#fff" />
                 {open ? "Jo'natildi" : <></>}
               </NavLink>
-              <p className="absolute -top-2 shadow3 bg-[#268b86] text-white min-w-[30px]  text-center rounded-full right-3">
+              <p className="absolute -top-3 shadow3 bg-[#268b86] text-white  w-[40px] h-[35px] flex items-center justify-center  text-center rounded-full right-2">
                 {statistic.sending}
               </p>
             </li>
@@ -151,7 +151,7 @@ export default ({ open, onclik, pageFunk }) => {
                 <BiMailSend size={25} color="#fff" />
                 {open ? "Yetkazildi" : <></>}
               </NavLink>
-              <p className="absolute -top-2 shadow4 bg-[#30671d] text-white min-w-[30px]  text-center rounded-full right-3">
+              <p className="absolute -top-3 shadow4 bg-[#30671d] text-white  w-[40px] h-[35px] flex items-center justify-center  text-center rounded-full right-2">
                 {statistic.success}
               </p>
             </li>
@@ -179,7 +179,7 @@ export default ({ open, onclik, pageFunk }) => {
                 <MdOutlineCancelPresentation color="#fff" size={25} />
                 {open ? "Bekor qilindi" : <></>}
               </NavLink>
-              <p className="absolute -top-2 shadow5 bg-[#6a0329] text-white min-w-[30px]  text-center rounded-full right-3">
+              <p className="absolute -top-3 shadow5 bg-[#6a0329] text-white  w-[40px] h-[35px] flex items-center justify-center  text-center rounded-full right-2">
                 {statistic.cansel}
               </p>
             </li>

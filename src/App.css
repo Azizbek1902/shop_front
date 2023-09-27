@@ -13,7 +13,7 @@
   display: flex;
   gap: 15px;
   color: #fff;
-  background: #3A8DEF;
+  background: #3a8def;
   border-radius: 8px;
   transition: 0.3s all;
 }
@@ -21,7 +21,7 @@
   display: flex;
   gap: 15px;
   color: #fff;
-  background: #21BBB3;
+  background: #21bbb3;
   border-radius: 8px;
   transition: 0.3s all;
 }
@@ -29,7 +29,7 @@
   display: flex;
   gap: 15px;
   color: #fff;
-  background: #2A890B;
+  background: #2a890b;
   border-radius: 8px;
   transition: 0.3s all;
 }
@@ -37,7 +37,7 @@
   display: flex;
   gap: 15px;
   color: #fff;
-  background: #8B1540;
+  background: #ab2a59;
   border-radius: 8px;
   transition: 0.3s all;
 }
@@ -59,21 +59,10 @@
   background: #fd8f30;
   color: #fff;
   border-radius: 8px;
-} 
-.shadoww {
-  box-shadow: 0px 0px 5px #e27619;
 }
-.shadow4 {
-  box-shadow: 0px 0px 5px #30671d;
-}
-.shadow2 {
-  box-shadow: 0px 0px 5px #2545ff;
-}
-.shadow3 {
-  box-shadow: 0px 0px 5px #268b86;
-}
-.shadow5 {
-  box-shadow: 0px 0px 5px #6a0329;
+.textStyle {
+  font-family: sans-serif;
+  color: #433f3f;
 }
 
 .shadowNum {

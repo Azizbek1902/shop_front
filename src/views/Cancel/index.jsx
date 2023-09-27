@@ -1,77 +1,70 @@
-import { BsFillCalendar2DayFill } from "react-icons/bs";
 import React, { useState, useEffect } from "react";
 import orderService from "../../services/order";
 import { BsFillPencilFill } from "react-icons/bs";
-import DateTimePicker from "react-datetime-picker";
 import { useNavigate } from "react-router-dom";
 import "react-datetime-picker/dist/DateTimePicker.css";
+import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 import "react-calendar/dist/Calendar.css";
 import { getErorrToast } from "../../services/toaster";
-import moment from "moment";
+import ReactPaginate from "react-paginate";
+
 export default () => {
   const navigate = useNavigate();
-  const [dateValue, setDateValue] = useState(moment());
   const [order, setOrder] = useState([]);
-  const [statistic, setStatistic] = useState({
-    new: 0,
-    inProgress: 0,
-    sending: 0,
-    success: 0,
-    cansel: 0,
-  });
+  const [pageNum, setPageNum] = useState(0);
+  const [pageLength, setPageLength] = useState(0);
 
   const getOrder = async (data) => {
     orderService
       .getAll(data)
       .then((res) => {
-        setOrder(res);
+        setOrder(res.docs);
+        setPageLength(res?.totalPages);
       })
       .catch(() => getErorrToast());
-    orderService
-      .getStatistic(data)
-      .then((res) => {
-        setStatistic(res);
-      })
-      .catch((err) => console.log(err));
   };
   useEffect(() => {
-    getOrder({ status: 4, date: moment(dateValue).format("YYYY-MM-DD") });
+    getOrder({ status: 4, limit: 6, page: pageNum });
   }, []);
 
   const getOneOrder = (item) => {
     localStorage.setItem("order", JSON.stringify(item));
     navigate(`/order/one`);
   };
-  const onChangeFunk = (date) => {
-    setDateValue(date);
-    orderService
-      .getAll({ status: 0, date: moment(date).format("YYYY-MM-DD") })
-      .then((res) => {
-        setOrder(res);
-      })
-      .catch(() => getErorrToast());
-    orderService
-      .getStatistic({ date: moment(date).format("YYYY-MM-DD") })
-      .then((res) => {
-        setStatistic(res);
-      })
-      .catch(() => getErorrToast());
+  const handlePageClick = (event) => {
+    setPageNum(event.selected + 1);
   };
 
   return (
     <>
-      <h1 className="mt-20 pb-10 text-center text-4xl font-semibold font-serif">
+      <h1 className="mt-20 text-center text-4xl font-semibold font-serif">
         Bekor qilingan mahsulotlar ro'yxati
       </h1>
-      <div className="flex justify-start w-full">
-        <div className="mt-5 ml-16">
-          <DateTimePicker
-            format={"y-MM-dd"}
-            calendarIcon={<BsFillCalendar2DayFill size={23} color="#3A8DEF" />}
-            calendarClassName="border-2 border-red-400"
-            onChange={(date) => onChangeFunk(date)}
-            value={dateValue}
-          />
+      <div className="flex justify-center">
+        <div className="w-[90%]">
+          <div className="flex justify-end">
+            <ReactPaginate
+              breakLabel={<span className="mr-4">...</span>}
+              nextLabel={
+                <button className="w-10 h-10 flex items-center border border-[#2C4691] justify-center text-black focus:text-white focus:bg-[#2C4691] rounded-md">
+                  <AiOutlineRight />
+                </button>
+              }
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={1}
+              marginPagesDisplayed={3}
+              pageCount={40}
+              activeClassName="bg-[#2C4691] text-white"
+              previousLabel={
+                <button className="w-10 h-10 flex items-center border border-[#2C4691] justify-center text-black focus:text-white focus:bg-[#2C4691] rounded-md">
+                  <AiOutlineLeft />
+                </button>
+              }
+              pageClassName="block paginateButton text-2xl border- border-solid border-[#2C4691]  hover:bg-[#2C4691] hover:text-white cursor-pointer w-10 h-10 flex items-center justify-center rounded-md"
+              containerClassName="flex max-w-[600px] gap-2 items-center justify-center mt-8 mb-4"
+              renderOnZeroPageCount={null}
+            />
+          </div>
         </div>
       </div>
       <div className="orders">

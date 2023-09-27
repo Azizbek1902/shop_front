@@ -5,10 +5,28 @@ import { BiLoader, BiMailSend } from "react-icons/bi";
 import { BsFillPersonBadgeFill } from "react-icons/bs";
 import { RiLuggageCartLine, RiMenuUnfoldFill } from "react-icons/ri";
 import { RiMenuFoldFill } from "react-icons/ri";
-import React from "react";
+import orderService from "../../services/order";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export default ({ open, onclik, pageFunk }) => {
+  const [defaultStatus, setDefaultStatus] = useState(0);
+  const [statistic, setStatistic] = useState({
+    new: 0,
+    inProgress: 0,
+    sending: 0,
+    success: 0,
+    cansel: 0,
+  });
+  useEffect(() => {
+    const data = { status: defaultStatus };
+    orderService
+      .getStatistic(data)
+      .then((res) => {
+        setStatistic(res);
+      })
+      .catch((err) => console.log(err));
+  }, [defaultStatus]);
   return (
     <div className="z-30">
       <div className="relative">
@@ -26,7 +44,10 @@ export default ({ open, onclik, pageFunk }) => {
         >
           <ul className="block">
             <li
-              onClick={() => pageFunk("new")}
+              onClick={() => {
+                pageFunk("new");
+                setDefaultStatus(0);
+              }}
               className="pb-5 pr-3 text-xl relative font-semibold flex gap-5 font-serif"
             >
               <NavLink
@@ -47,11 +68,14 @@ export default ({ open, onclik, pageFunk }) => {
                 {open ? "Yangi" : <></>}
               </NavLink>
               <p className="absolute -top-2 bg-[#FD8F30] text-white min-w-[30px]  text-center rounded-full right-3">
-                0
+                {statistic.new}
               </p>
             </li>
             <li
-              onClick={() => pageFunk("sending")}
+              onClick={() => {
+                pageFunk("sending");
+                setDefaultStatus(1);
+              }}
               className="pb-5 pr-3 text-xl relative font-semibold flex gap-5 font-serif"
             >
               <NavLink
@@ -72,11 +96,14 @@ export default ({ open, onclik, pageFunk }) => {
                 {open ? "Tayyorlanmoqda" : <></>}
               </NavLink>
               <p className="absolute -top-2 bg-[#3A8DEF] text-white min-w-[30px]  text-center rounded-full right-3">
-                0
+                {statistic.inProgress}
               </p>
             </li>
             <li
-              onClick={() => pageFunk("send")}
+              onClick={() => {
+                pageFunk("send");
+                setDefaultStatus(2);
+              }}
               className="pb-5 pr-3 text-xl relative font-semibold flex gap-5 font-serif"
             >
               <NavLink
@@ -97,11 +124,14 @@ export default ({ open, onclik, pageFunk }) => {
                 {open ? "Jo'natildi" : <></>}
               </NavLink>
               <p className="absolute -top-2 bg-[#21BBB3] text-white min-w-[30px]  text-center rounded-full right-3">
-                0
+                {statistic.sending}
               </p>
             </li>
             <li
-              onClick={() => pageFunk("arrive")}
+              onClick={() => {
+                pageFunk("arrive");
+                setDefaultStatus(3);
+              }}
               className="pb-5 pr-3 text-xl relative font-semibold flex gap-5 font-serif"
             >
               <NavLink
@@ -122,11 +152,14 @@ export default ({ open, onclik, pageFunk }) => {
                 {open ? "Yetkazildi" : <></>}
               </NavLink>
               <p className="absolute -top-2 bg-[#2A890B] text-white min-w-[30px]  text-center rounded-full right-3">
-                0
+                {statistic.success}
               </p>
             </li>
             <li
-              onClick={() => pageFunk("cancel")}
+              onClick={() => {
+                pageFunk("cancel");
+                setDefaultStatus(4);
+              }}
               className="pb-5 pr-3 text-xl relative font-semibold flex gap-5 font-serif"
             >
               <NavLink
@@ -147,7 +180,7 @@ export default ({ open, onclik, pageFunk }) => {
                 {open ? "Bekor qilindi" : <></>}
               </NavLink>
               <p className="absolute -top-2 bg-[#8B1540] text-white min-w-[30px]  text-center rounded-full right-3">
-                0
+                {statistic.cansel}
               </p>
             </li>
             <li

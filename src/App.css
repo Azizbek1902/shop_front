@@ -4,8 +4,48 @@
 .active {
   display: flex;
   gap: 15px;
-  color: #9783f3;
-  background: #f6fafd;
+  color: #fff;
+  background: #fd8f30;
+  border-radius: 8px;
+  transition: 0.3s all;
+}
+.active1 {
+  display: flex;
+  gap: 15px;
+  color: #fff;
+  background: #3A8DEF;
+  border-radius: 8px;
+  transition: 0.3s all;
+}
+.active2 {
+  display: flex;
+  gap: 15px;
+  color: #fff;
+  background: #21BBB3;
+  border-radius: 8px;
+  transition: 0.3s all;
+}
+.active3 {
+  display: flex;
+  gap: 15px;
+  color: #fff;
+  background: #2A890B;
+  border-radius: 8px;
+  transition: 0.3s all;
+}
+.active4 {
+  display: flex;
+  gap: 15px;
+  color: #fff;
+  background: #8B1540;
+  border-radius: 8px;
+  transition: 0.3s all;
+}
+.active5 {
+  display: flex;
+  gap: 15px;
+  color: #fff;
+  background: #006b7d;
   border-radius: 8px;
   transition: 0.3s all;
 }
@@ -16,10 +56,26 @@
   color: #f6fafd;
 }
 .default:hover {
-  background: #f6fafd;
-  color: #9783f3;
+  background: #fd8f30;
+  color: #fff;
   border-radius: 8px;
+} 
+.shadoww {
+  box-shadow: 0px 0px 5px #ff7700;
 }
+.shadow4 {
+  box-shadow: 0px 0px 5px #30671d;
+}
+.shadow2 {
+  box-shadow: 0px 0px 5px #2545ff;
+}
+.shadow3 {
+  box-shadow: 0px 0px 5px #268b86;
+}
+.shadow5 {
+  box-shadow: 0px 0px 5px #6a0329;
+}
+
 .shadowNum {
   box-shadow: 0px 0px 10px rgb(205, 204, 204);
 }

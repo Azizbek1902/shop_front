@@ -64,10 +64,10 @@ export default ({ open, onclik, pageFunk }) => {
                 }
                 to={"/dashboard"}
               >
-                <RiLuggageCartLine size={25} color="#FD8F30" />
+                <RiLuggageCartLine size={25} color="#fff" />
                 {open ? "Yangi" : <></>}
               </NavLink>
-              <p className="absolute -top-2 bg-[#FD8F30] text-white min-w-[30px]  text-center rounded-full right-3">
+              <p className="absolute -top-2 shadoww bg-[#ff7700] text-white min-w-[30px]  text-center rounded-full right-3">
                 {statistic.new}
               </p>
             </li>
@@ -83,7 +83,7 @@ export default ({ open, onclik, pageFunk }) => {
                   isPending
                     ? "pending"
                     : isActive
-                    ? `active py-2 pl-4 ${
+                    ? `active1 py-2 pl-4 ${
                         open ? "pr-16 pl-2 w-full" : "pl-2 pr-4"
                       }`
                     : `default hover:pl-2 px-2  ${
@@ -92,10 +92,10 @@ export default ({ open, onclik, pageFunk }) => {
                 }
                 to={"/dashboard"}
               >
-                <BiLoader size={25} color="#3A8DEF" />
+                <BiLoader size={25} color="#fff" />
                 {open ? "Tayyorlanmoqda" : <></>}
               </NavLink>
-              <p className="absolute -top-2 bg-[#3A8DEF] text-white min-w-[30px]  text-center rounded-full right-3">
+              <p className="absolute -top-2 shadow2 bg-[#2545ff] text-white min-w-[30px]  text-center rounded-full right-3">
                 {statistic.inProgress}
               </p>
             </li>
@@ -111,7 +111,7 @@ export default ({ open, onclik, pageFunk }) => {
                   isPending
                     ? "pending"
                     : isActive
-                    ? `active py-2 pl-4 ${
+                    ? `active2 py-2 pl-4 ${
                         open ? "pr-16 pl-2 w-full" : "pl-2 pr-4"
                       }`
                     : `default hover:pl-2 px-2  ${
@@ -120,10 +120,10 @@ export default ({ open, onclik, pageFunk }) => {
                 }
                 to={"/dashboard"}
               >
-                <TbTruckDelivery size={25} color="#21BBB3" />
+                <TbTruckDelivery size={25} color="#fff" />
                 {open ? "Jo'natildi" : <></>}
               </NavLink>
-              <p className="absolute -top-2 bg-[#21BBB3] text-white min-w-[30px]  text-center rounded-full right-3">
+              <p className="absolute -top-2 shadow3 bg-[#268b86] text-white min-w-[30px]  text-center rounded-full right-3">
                 {statistic.sending}
               </p>
             </li>
@@ -139,7 +139,7 @@ export default ({ open, onclik, pageFunk }) => {
                   isPending
                     ? "pending"
                     : isActive
-                    ? `active py-2 pl-4 ${
+                    ? `active3 py-2 pl-4 ${
                         open ? "pr-16 pl-2 w-full" : "pl-2 pr-4"
                       }`
                     : `default hover:pl-2 px-2  ${
@@ -148,10 +148,10 @@ export default ({ open, onclik, pageFunk }) => {
                 }
                 to={"/dashboard"}
               >
-                <BiMailSend size={25} color="#2A890B" />
+                <BiMailSend size={25} color="#fff" />
                 {open ? "Yetkazildi" : <></>}
               </NavLink>
-              <p className="absolute -top-2 bg-[#2A890B] text-white min-w-[30px]  text-center rounded-full right-3">
+              <p className="absolute -top-2 shadow4 bg-[#30671d] text-white min-w-[30px]  text-center rounded-full right-3">
                 {statistic.success}
               </p>
             </li>
@@ -167,7 +167,7 @@ export default ({ open, onclik, pageFunk }) => {
                   isPending
                     ? "pending"
                     : isActive
-                    ? `active py-2 pl-4 ${
+                    ? `active4 py-2 pl-4 ${
                         open ? "pr-16 pl-2 w-full" : "pl-2 pr-4"
                       }`
                     : `default hover:pl-2 px-2  ${
@@ -176,10 +176,10 @@ export default ({ open, onclik, pageFunk }) => {
                 }
                 to={"/dashboard"}
               >
-                <MdOutlineCancelPresentation color="#8B1540" size={25} />
+                <MdOutlineCancelPresentation color="#fff" size={25} />
                 {open ? "Bekor qilindi" : <></>}
               </NavLink>
-              <p className="absolute -top-2 bg-[#8B1540] text-white min-w-[30px]  text-center rounded-full right-3">
+              <p className="absolute -top-2 shadow5 bg-[#6a0329] text-white min-w-[30px]  text-center rounded-full right-3">
                 {statistic.cansel}
               </p>
             </li>
@@ -192,7 +192,7 @@ export default ({ open, onclik, pageFunk }) => {
                   isPending
                     ? "pending"
                     : isActive
-                    ? `active py-2 pl-4 ${
+                    ? `active5 py-2 pl-4 ${
                         open ? "pr-16 pl-2 w-full" : "pl-2 pr-4"
                       }`
                     : `default w-full hover:pl-2 px-2  ${
@@ -214,7 +214,7 @@ export default ({ open, onclik, pageFunk }) => {
                   isPending
                     ? "pending"
                     : isActive
-                    ? `active py-2 pl-4 ${
+                    ? `active5 py-2 pl-4 ${
                         open ? "pr-16 pl-2 w-full" : "pl-2 pr-4"
                       }`
                     : `default hover:pl-2 px-2  ${

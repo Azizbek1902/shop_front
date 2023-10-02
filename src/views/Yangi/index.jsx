@@ -16,7 +16,7 @@ export default () => {
 
   const getOrder = async (data) => {
     orderService
-      .getAll(data)
+      .getNew(data)
       .then((res) => {
         setOrder(res.docs);
         setPageLength(res?.totalPages);
@@ -24,7 +24,7 @@ export default () => {
       .catch(() => getErorrToast());
   };
   useEffect(() => {
-    getOrder({ status: 0, limit: 6, page: pageNum });
+    getOrder({ status: 0, limit: 20, page: pageNum });
   }, []);
 
   const getOneOrder = (item) => {

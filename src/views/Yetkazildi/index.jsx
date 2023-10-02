@@ -24,7 +24,7 @@ export default () => {
       .catch(() => getErorrToast());
   };
   useEffect(() => {
-    getOrder({ status: 3, limit: 6, page: pageNum  });
+    getOrder({ status: 3, limit: 20, page: pageNum  });
   }, []);
 
   const getOneOrder = (item) => {

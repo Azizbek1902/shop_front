@@ -34,7 +34,6 @@ export default () => {
     },
   });
   const handleSendFunk = (status) => {
-    console.log(status);
     const payload = {
       status: status,
     };
@@ -42,7 +41,7 @@ export default () => {
       .edit(data[0]._id, payload)
       .then()
       .catch(() => editErorrToast());
-    navigate("/dashboard");
+      navigate("/dashboard");
   };
   return (
     <div className="orderOne min-h-screen max-h-full pb-10 flex items-center rounded-md pt-20">

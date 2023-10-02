@@ -11,6 +11,7 @@ import { NavLink } from "react-router-dom";
 
 export default ({ open, onclik, pageFunk }) => {
   const [defaultStatus, setDefaultStatus] = useState(0);
+  const [refresh, setRefresh] = useState(0);
   const [statistic, setStatistic] = useState({
     new: 0,
     inProgress: 0,
@@ -26,7 +27,7 @@ export default ({ open, onclik, pageFunk }) => {
         setStatistic(res);
       })
       .catch((err) => console.log(err));
-  }, [defaultStatus]);
+  }, [refresh]);
   return (
     <div className="z-30">
       <div className="relative">
@@ -47,6 +48,7 @@ export default ({ open, onclik, pageFunk }) => {
               onClick={() => {
                 pageFunk("new");
                 setDefaultStatus(0);
+                setRefresh(1);
               }}
               className="pb-5 pr-3 text-xl relative font-semibold flex gap-5 font-serif"
             >
@@ -68,13 +70,14 @@ export default ({ open, onclik, pageFunk }) => {
                 {open ? "Yangi" : <></>}
               </NavLink>
               <p className="absolute -top-3 shadoww bg-[#e27619] w-[40px] h-[35px] text-white flex items-center justify-center text-center rounded-full right-2">
-                {statistic.new} 
+                {statistic.new}
               </p>
             </li>
             <li
               onClick={() => {
                 pageFunk("sending");
                 setDefaultStatus(1);
+                setRefresh(2);
               }}
               className="pb-5 pr-3 text-xl relative font-semibold flex gap-5 font-serif"
             >
@@ -103,6 +106,7 @@ export default ({ open, onclik, pageFunk }) => {
               onClick={() => {
                 pageFunk("send");
                 setDefaultStatus(2);
+                setRefresh(3);
               }}
               className="pb-5 pr-3 text-xl relative font-semibold flex gap-5 font-serif"
             >
@@ -131,6 +135,7 @@ export default ({ open, onclik, pageFunk }) => {
               onClick={() => {
                 pageFunk("arrive");
                 setDefaultStatus(3);
+                setRefresh(4);
               }}
               className="pb-5 pr-3 text-xl relative font-semibold flex gap-5 font-serif"
             >
@@ -159,6 +164,7 @@ export default ({ open, onclik, pageFunk }) => {
               onClick={() => {
                 pageFunk("cancel");
                 setDefaultStatus(4);
+                setRefresh(5);
               }}
               className="pb-5 pr-3 text-xl relative font-semibold flex gap-5 font-serif"
             >

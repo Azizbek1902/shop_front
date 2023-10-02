@@ -67,7 +67,7 @@ export default () => {
           </div>
         </div>
       </div>
-      <div className="orders">
+      <div className="orders mb-10">
         <table>
           <thead>
             <tr>

@@ -89,10 +89,10 @@ export default () => {
                           {item?.user?.phone}
                         </td>
                         <td className="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                          @{item?.user?.address}
+                          {item?.user?.address}
                         </td>
                         <td className="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                          @{item?.cartTotal}
+                          {item?.cartTotal} so'm
                         </td>
                       </tr>
                     </tbody>

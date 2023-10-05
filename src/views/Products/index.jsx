@@ -23,6 +23,7 @@ export default () => {
   const [isEdit, setIsEdit] = useState({ type: false, data: null });
   const [files, setFiles] = useState([]);
   const [refresh, setRefresh] = useState(false);
+  const [buttonCategorys, setButtonCategorys] = useState([]);
   const navigate = useNavigate();
   const [attendence, setAttendence] = useState([
     {
@@ -42,6 +43,7 @@ export default () => {
       .getAll()
       .then((res) => {
         setDataProduct(res);
+        setButtonCategorys(res);
       })
       .catch((err) => console.log(err));
     setRefresh(true);
@@ -145,7 +147,14 @@ export default () => {
       setAttendence(data);
     }
   };
-
+  const handleChange = (itemId) => {
+    if (itemId === "") {
+      setDataProduct(buttonCategorys);
+    } else {
+      let data = buttonCategorys.filter((i) => i.category === itemId);
+      setDataProduct(data);
+    }
+  };
   return (
     <div>
       <div className="flex justify-center">
@@ -163,6 +172,33 @@ export default () => {
             >
               <BiAddToQueue size={25} />
             </button>
+          </div>
+          <div className="mb-10 flex justify-center w-full">
+            <div className="flex gap-4 max-w-[900px] overflow-x-auto mx-4">
+              <button
+                onClick={() => {
+                  handleChange("");
+                }}
+                className="text-lg outline-none ml-0 h-16 px-5 py-2 w-[200px] rounded-md focus:text-white text-black font-bold
+           font-sans bg-[#F0F0F0] focus:bg-[#EE8108]"
+              >
+                All
+              </button>
+              {categorys.map((item, index) => {
+                return (
+                  <button
+                    onClick={() => {
+                      handleChange(item._id);
+                    }}
+                    key={index + 1}
+                    className="text-lg outline-none h-16 px-5 py-2 w-[200px] rounded-md focus:text-white text-black font-bold
+           font-sans bg-[#F0F0F0] focus:bg-[#EE8108]"
+                  >
+                    {item?.title}
+                  </button>
+                );
+              })}
+            </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {dataProduct.map((item, ind) => {

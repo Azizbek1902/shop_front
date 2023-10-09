@@ -72,9 +72,19 @@ export default () => {
       formData.append("file", files[0]);
       formData.append("parametr", JSON.stringify(foo));
       let payload = formData;
+      const payload2 = {
+        title: values.title,
+        status: false,
+        price: values.price,
+        storeCount: values.storeCount,
+        desc: values.desc,
+        category: values.category._id,
+        file: files[0],
+        parametr: JSON.stringify(foo),
+      };
       if (isEdit.type) {
         products
-          .edit(isEdit.data._id, payload)
+          .edit(isEdit.data._id, payload2)
           .then(() => editToast())
           .catch(() => editErorrToast());
       } else {
